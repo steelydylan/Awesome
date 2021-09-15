@@ -1,19 +1,12 @@
 import { renderToString } from "react-dom/server";
 import { GetStaticProps, GetStaticPaths } from "next";
-import styled from "styled-components";
-import media from "styled-media-query";
 import { NextSeo, ArticleJsonLd, ArticleJsonLdProps } from "next-seo";
 import { getPosts } from "@/utils/get-posts";
 import { Entry } from "@/types";
-import { useHighlight } from "@/hooks/use-highlight";
 import { Content } from "@/components/content";
 import { ContentHeader } from "@/components/content-header";
 import { Layout } from "@/components/layout";
 import { TopicPath } from "@/components/common/topicpath";
-import { ArticleWrapper } from "@/components/articles";
-import { TagList } from "@/components/common/tag-list";
-import { Related } from "@/components/articles/related";
-import { ArticleCategoryList } from "@/components/articles/category-list";
 import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
 import blogConfig from "@/blog.config";
@@ -51,7 +44,7 @@ export default ({ entry, related }: DetailProps) => {
                   <ContentHeader data={entry.data} />
                   <Content content={entry.content} />
                 </div>
-                <Related posts={related} />
+                {/* <Related posts={related} /> */}
               </div>
             )}
             <Side />
