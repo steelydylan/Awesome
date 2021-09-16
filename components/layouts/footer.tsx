@@ -1,5 +1,4 @@
 import blogConfig from "@/blog.config";
-import Link from "next/link";
 import { CategoryList } from "../common/category-list";
 import { SocialList } from "../common/social-list";
 import { TagList } from "../common/tag-list";

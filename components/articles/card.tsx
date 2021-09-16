@@ -1,4 +1,5 @@
 import { EntryData } from "@/types";
+import Image from "next/image";
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
 
@@ -28,10 +29,11 @@ export const ArticleCard: React.VFC<Props> = ({ entry, className }) => {
   return (
     <div className={className}>
       <div className="article-img-wrap">
-        <img
+        <Image
           src={entry.thumbnail ?? blogConfig.article.defaultThumbnail}
           className="article-img"
           alt=""
+          layout="fill"
         />
       </div>
       <div className="article-content">
@@ -68,13 +70,8 @@ export const ArticleCard: React.VFC<Props> = ({ entry, className }) => {
             border-radius: 20px;
             overflow: hidden;
           }
-          .article-img {
-            width: 100%;
-            height: 100%;
+          .article-img-wrap :global(.article-img) {
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
           }
           .article-title {
             font-size: var(--text-md);

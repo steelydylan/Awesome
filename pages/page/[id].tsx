@@ -10,7 +10,6 @@ import {
   AritcleColumn,
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";
-import { Title } from "@/components/texts";
 import { Pager } from "@/components/pager";
 import blogConfig from "@/blog.config";
 import { Side } from "@/components/layouts/side";
@@ -79,7 +78,8 @@ export const getStaticProps = ({ params }) => {
         })
         .slice(
           current * blogConfig.article.articlesPerPage,
-          current * blogConfig.article.articlesPerPage + blogConfig.article.articlesPerPage
+          current * blogConfig.article.articlesPerPage +
+            blogConfig.article.articlesPerPage
         )
         .map((post) => {
           const { content, ...others } = post;

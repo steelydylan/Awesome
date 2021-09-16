@@ -1,4 +1,5 @@
 import blogConfig from "@/blog.config";
+import Image from "next/image";
 
 export const CategoryHero: React.FC<{
   title: string;
@@ -7,7 +8,7 @@ export const CategoryHero: React.FC<{
 }> = ({ title, image, description }) => {
   return (
     <div className="category-hero">
-      <img src={image} alt="" />
+      <Image src={image} alt="" layout="fill" className="category-hero-img" />
       <div className="category-content">
         <h2 className="category-title">{title}</h2>
         <p className="category-description">{description}</p>
@@ -30,12 +31,7 @@ export const CategoryHero: React.FC<{
               margin-top: -32px;
             }
           }
-          .category-hero img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+          .category-hero :global(.category-hero-img) {
             object-fit: cover;
           }
           .category-content {

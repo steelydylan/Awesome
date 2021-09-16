@@ -1,4 +1,5 @@
 import blogConfig from "@/blog.config";
+import Image from "next/image";
 import { SocialList } from "../common/social-list";
 
 export const Profile: React.FC = () => {
@@ -7,7 +8,7 @@ export const Profile: React.FC = () => {
       <div className="profile-inner">
         <div className="profile-img-wrap">
           <div className="profile-img">
-            <img
+            <Image
               src={blogConfig.account.image}
               width="130"
               height="130"
@@ -39,10 +40,11 @@ export const Profile: React.FC = () => {
             height: 130px;
             margin: 0 auto;
           }
-          .profile-img img {
+          .profile-img :global(img) {
             border: solid 3px #fff;
             border-radius: 65px;
             overflow: hidden;
+            object-fit: cover;
           }
           .profile-img-wrap {
             transform: translateY(-65px);

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import dayjs from "dayjs";
 import { getAuthorFromName } from "@/utils/authors";
 import { EntryData } from "@/types";
@@ -31,7 +32,12 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
       {data.tags && <TagList tags={getTagList(data.tags)} />}
       {data.thumbnail && (
         <div className="thumbnail-wrap">
-          <img src={data.thumbnail} alt="" className="thumbnail" />
+          <Image
+            src={data.thumbnail}
+            alt=""
+            className="thumbnail"
+            layout="fill"
+          />
         </div>
       )}
       <time className="time">{dateFormatted}</time>
@@ -62,12 +68,7 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
             overflow: hidden;
             margin-bottom: 10px;
           }
-          .thumbnail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+          .thumbnail-wrap :global(.thumbnail) {
             object-fit: cover;
           }
         `}
