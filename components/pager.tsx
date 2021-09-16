@@ -19,7 +19,7 @@ const _List: React.FC = ({ children }) => {
   );
 };
 
-const _ListItem: React.FC<{ active?: boolean }> = ({ children, active }) => {
+const _ListItem: React.FC = ({ children }) => {
   return (
     <li className="list-item">
       {children}
@@ -29,34 +29,43 @@ const _ListItem: React.FC<{ active?: boolean }> = ({ children, active }) => {
             list-style: none;
             margin: 16px 4px;
           }
-          ${active
-            ? `
-            .list-item span {
-              background-color: #000;
-              padding: 12px;
-            }
-          `
-            : ""}
+          .list-item :global(.active) {
+            background-color: var(--c-primary);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         `}
       </style>
     </li>
   );
 };
 
-const _PagerLink: React.FC = ({ children }) => {
+const _PagerLink: React.FC<{ href: string }> = ({ children, href }) => {
   return (
-    <a className="link">
-      {children}
-      <style jsx>
-        {`
-          .link {
-            color: var(--c-primary);
-            border: 1px solid var(--c-primary);
-            padding: 12px;
-          }
-        `}
-      </style>
-    </a>
+    <Link href={href}>
+      <a className="link" href={href}>
+        {children}
+        <style jsx>
+          {`
+            .link {
+              color: var(--c-primary);
+              border: 1px solid var(--c-primary);
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          `}
+        </style>
+      </a>
+    </Link>
   );
 };
 
@@ -74,37 +83,31 @@ export const Pager: React.VFC<Props> = (props) => {
     for (let i = 1; i <= max; i += 1) {
       if (i === current) {
         list.push(
-          <_ListItem active>
-            <span>{i}</span>
+          <_ListItem>
+            <span className="active">{i}</span>
           </_ListItem>
         );
       } else if (i === 1 && i !== current) {
         list.push(
           <_ListItem>
-            <Link href="/">
-              <_PagerLink>
-                <span>1</span>
-              </_PagerLink>
-            </Link>
+            <_PagerLink href="/">
+              <span>1</span>
+            </_PagerLink>
           </_ListItem>
         );
       } else if (Math.abs(i - current) < 4) {
         list.push(
           <_ListItem>
-            <Link href={`/page/${i}`}>
-              <_PagerLink>
-                <span>{i}</span>
-              </_PagerLink>
-            </Link>
+            <_PagerLink href={`/page/${i}`}>
+              <span>{i}</span>
+            </_PagerLink>
           </_ListItem>
         );
       } else if (i === max && i !== current) {
         list.push(
-          <Link href={`/page/${max}`}>
-            <_PagerLink>
-              <span>{max}</span>
-            </_PagerLink>
-          </Link>
+          <_PagerLink href={`/page/${max}`}>
+            <span>{max}</span>
+          </_PagerLink>
         );
       }
     }

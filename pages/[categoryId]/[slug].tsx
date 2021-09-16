@@ -10,6 +10,7 @@ import { TopicPath } from "@/components/common/topicpath";
 import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
 import blogConfig from "@/blog.config";
+import { Main } from "@/components/layouts/main";
 
 type DetailProps = {
   entry: Entry;
@@ -38,14 +39,13 @@ export default ({ entry, related }: DetailProps) => {
         <>
           <Wrapper>
             {entry.data && (
-              <div className="article-outer">
-                <div className="article-inner">
-                  <TopicPath items={[{ label: entry.data.title }]} />
-                  <ContentHeader data={entry.data} />
-                  <Content content={entry.content} />
-                </div>
+              <Main>
+                <TopicPath items={[{ label: entry.data.title }]} />
+                <ContentHeader data={entry.data} />
+                <Content content={entry.content} />
+
                 {/* <Related posts={related} /> */}
-              </div>
+              </Main>
             )}
             <Side />
           </Wrapper>
@@ -68,18 +68,6 @@ export default ({ entry, related }: DetailProps) => {
       <ArticleJsonLd {...jsonLd} />
       <style jsx>
         {`
-          .article-inner {
-            margin-right: 80px;
-            word-break: break-all;
-            @media screen and (max-width: ${blogConfig.styles.breakPoints
-                .medium}) {
-              margin-right: 0;
-            }
-          }
-          .article-outer {
-            position: relative;
-            width: 100%;
-          }
           .article-banner {
             width: 100%;
             height: auto;

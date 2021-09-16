@@ -14,6 +14,7 @@ import { Pager } from "@/components/pager";
 import blogConfig from "@/blog.config";
 import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
+import { Main } from "@/components/layouts/main";
 
 export default ({
   posts,
@@ -27,18 +28,20 @@ export default ({
   return (
     <Layout>
       <Wrapper>
-        <ArticleList>
-          <LatestArticle>
-            {posts.map((post) => (
-              <AritcleColumn key={post.slug} column={2}>
-                <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-                  <ArticleCard entry={post.data} />
-                </ArticleLink>
-              </AritcleColumn>
-            ))}
-          </LatestArticle>
-          <Pager current={current} max={max} />
-        </ArticleList>
+        <Main>
+          <ArticleList>
+            <LatestArticle>
+              {posts.map((post) => (
+                <AritcleColumn key={post.slug} column={2}>
+                  <ArticleLink href={`/${post.data.category}/${post.slug}`}>
+                    <ArticleCard entry={post.data} />
+                  </ArticleLink>
+                </AritcleColumn>
+              ))}
+            </LatestArticle>
+            <Pager current={current} max={max} />
+          </ArticleList>
+        </Main>
         <Side />
       </Wrapper>
       <NextSeo canonical={process.env.NEXT_PUBLIC_SITE_URL} />
