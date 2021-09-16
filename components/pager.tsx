@@ -73,11 +73,12 @@ type Props = {
   max?: number;
   current?: number;
   className?: string;
+  append?: string;
 };
 
 export const Pager: React.VFC<Props> = (props) => {
   const list: React.ReactNode[] = [];
-  const { max, current, className } = props;
+  const { max, current, className, append = "" } = props;
 
   if (max && current) {
     for (let i = 1; i <= max; i += 1) {
@@ -90,7 +91,7 @@ export const Pager: React.VFC<Props> = (props) => {
       } else if (i === 1 && i !== current) {
         list.push(
           <_ListItem>
-            <_PagerLink href="/">
+            <_PagerLink href={`${append}/`}>
               <span>1</span>
             </_PagerLink>
           </_ListItem>
@@ -98,14 +99,14 @@ export const Pager: React.VFC<Props> = (props) => {
       } else if (Math.abs(i - current) < 4) {
         list.push(
           <_ListItem>
-            <_PagerLink href={`/page/${i}`}>
+            <_PagerLink href={`${append}/page/${i}`}>
               <span>{i}</span>
             </_PagerLink>
           </_ListItem>
         );
       } else if (i === max && i !== current) {
         list.push(
-          <_PagerLink href={`/page/${max}`}>
+          <_PagerLink href={`${append}/page/${max}`}>
             <span>{max}</span>
           </_PagerLink>
         );

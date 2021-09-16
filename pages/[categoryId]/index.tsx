@@ -14,14 +14,16 @@ import { Category, Entry } from "@/types";
 import blogConfig from "@/blog.config";
 import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
+import { LinkButton } from "@/components/buttons";
 
 type Props = {
   category: Category;
   posts: Entry[];
+  max: number;
 };
 
-const CategoryDeteil: NextPage<Props> = (props) => {
-  const { category, posts } = props;
+const CategoryIndex: NextPage<Props> = (props) => {
+  const { category, posts, max } = props;
 
   return (
     <Layout>
@@ -44,6 +46,11 @@ const CategoryDeteil: NextPage<Props> = (props) => {
           ))}
         </LatestArticle>
       </ArticleWrapper>
+      <div className="link-button-wrap">
+        {max > 1 && (
+          <LinkButton href={`/${category.id}/page/2`}>Read More</LinkButton>
+        )}
+      </div>
       <NextSeo
         title={category.title}
         description={category.description}
@@ -53,11 +60,19 @@ const CategoryDeteil: NextPage<Props> = (props) => {
           type: "article",
         }}
       />
+      <style jsx>
+        {`
+          .link-button-wrap {
+            text-align: center;
+            margin-top: 30px;
+          }
+        `}
+      </style>
     </Layout>
   );
 };
 
-export default CategoryDeteil;
+export default CategoryIndex;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = blogConfig.categories.map(({ id }) => ({
@@ -73,10 +88,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   try {
     const posts = getPosts();
-    const filteredPosts = posts
-      .filter(({ data }) => {
-        return data.category === categoryId;
-      })
+    const filteredPosts = posts.filter(({ data }) => {
+      return data.category === categoryId;
+    });
+
+    const slicedPosts = filteredPosts
+      .slice(0, blogConfig.article.articlesPerPage)
       .map((p) => {
         const { content, ...others } = p;
         return others;
@@ -85,7 +102,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
       props: {
         category,
-        posts: filteredPosts,
+        max: Math.ceil(
+          filteredPosts.length / blogConfig.article.articlesPerPage
+        ),
+        posts: slicedPosts,
       },
     };
   } catch (e) {

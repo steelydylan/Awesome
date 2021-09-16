@@ -5,6 +5,7 @@ import {
   LatestArticle,
   ArticleLink,
   AritcleColumn,
+  ArticleList,
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";
 import { Title } from "@/components/texts";
@@ -14,14 +15,17 @@ import { Category, Entry } from "@/types";
 import blogConfig from "@/blog.config";
 import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
+import { Pager } from "@/components/pager";
 
 type Props = {
   category: Category;
   posts: Entry[];
+  current: number;
+  max: number;
 };
 
 const CategoryDeteil: NextPage<Props> = (props) => {
-  const { category, posts } = props;
+  const { category, posts, current, max } = props;
 
   return (
     <Layout>
@@ -33,17 +37,20 @@ const CategoryDeteil: NextPage<Props> = (props) => {
         />
       </Wrapper>
       <Title>POSTS</Title>
-      <ArticleWrapper>
-        <LatestArticle>
-          {posts.map((post) => (
-            <AritcleColumn key={post.slug} column={3}>
-              <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-                <ArticleCard entry={post.data} />
-              </ArticleLink>
-            </AritcleColumn>
-          ))}
-        </LatestArticle>
-      </ArticleWrapper>
+      <Wrapper>
+        <ArticleList>
+          <LatestArticle>
+            {posts.map((post) => (
+              <AritcleColumn key={post.slug} column={3}>
+                <ArticleLink href={`/${post.data.category}/${post.slug}`}>
+                  <ArticleCard entry={post.data} />
+                </ArticleLink>
+              </AritcleColumn>
+            ))}
+          </LatestArticle>
+          <Pager current={current} max={max} append={`/${category.id}`} />
+        </ArticleList>
+      </Wrapper>
       <NextSeo
         title={category.title}
         description={category.description}
@@ -60,23 +67,49 @@ const CategoryDeteil: NextPage<Props> = (props) => {
 export default CategoryDeteil;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = blogConfig.categories.map(({ id }) => ({
-    params: {
-      categoryId: id,
-    },
-  }));
+  const posts = getPosts();
+  const paths = [];
+  const map = new Map<string, number>();
+  posts.forEach((post, index) => {
+    const catNum = map.get(post.data.category)
+      ? map.get(post.data.category) + 1
+      : 1;
+    map.set(post.data.category, catNum);
+    if (catNum % blogConfig.article.articlesPerPage === 0) {
+      paths.push({
+        params: {
+          id: `${catNum / blogConfig.article.articlesPerPage + 1}`,
+          categoryId: post.data.category,
+        },
+      });
+    }
+  });
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { categoryId } = params;
+  const { categoryId, id } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
+  const current = parseInt(id as string, 10) - 1;
   try {
     const posts = getPosts();
     const filteredPosts = posts
       .filter(({ data }) => {
         return data.category === categoryId;
       })
+      .sort((postA, postB) => {
+        if (postA.data.date > postB.data.date) {
+          return -1;
+        }
+        return 1;
+      });
+
+    const slicedPosts = filteredPosts
+      .slice(
+        current * blogConfig.article.articlesPerPage,
+        current * blogConfig.article.articlesPerPage +
+          blogConfig.article.articlesPerPage
+      )
       .map((p) => {
         const { content, ...others } = p;
         return others;
@@ -84,8 +117,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     return {
       props: {
+        current: current + 1,
+        max: Math.ceil(
+          filteredPosts.length / blogConfig.article.articlesPerPage
+        ),
         category,
-        posts: filteredPosts,
+        posts: slicedPosts,
       },
     };
   } catch (e) {
