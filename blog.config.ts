@@ -35,7 +35,7 @@ export default {
     },
   },
   hero: {
-    title: "My awesome travel life",
+    title: "My awesome life",
     image: "/images/plane.jpeg",
     description:
       "description here. description here. description here. description here. description here.",
@@ -46,8 +46,8 @@ export default {
       url: `/travel`,
     },
     {
-      name: "About",
-      url: `/about`,
+      name: "camp",
+      url: `/camp`,
     },
   ],
   article: {
@@ -56,18 +56,16 @@ export default {
   },
   categories: [
     {
-      id: "html-css",
-      title: "HTML/CSS",
-      imagePath: "/images/london.jpeg",
-      description: "About HTML/CSS",
-      emoji: "",
+      id: "camp",
+      title: "Camp",
+      imagePath: "/images/camp.jpeg",
+      description: "Look at my awesome camp life",
     },
     {
       id: "travel",
       title: "Travel",
       imagePath: "/images/london.jpeg",
       description: "Look at my awesome travel life",
-      emoji: "",
     },
   ],
   tags: [
@@ -82,6 +80,14 @@ export default {
     {
       id: "paris",
       title: "Paris",
+    },
+    {
+      id: "fire",
+      title: "Fire",
+    },
+    {
+      id: "sky",
+      title: "Sky",
     },
   ],
 };

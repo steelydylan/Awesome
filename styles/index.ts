@@ -27,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     color: var(--gray0);
     box-sizing: border-box;
+    font-family: 'Clarkson',Helvetica,sans-serif;
   }
 
   h1,h2,h3 {
