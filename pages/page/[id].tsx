@@ -29,7 +29,6 @@ export default ({
     <Layout>
       <Wrapper>
         <ArticleList>
-          <Title>New Posts</Title>
           <LatestArticle>
             {posts.map((post) => (
               <AritcleColumn key={post.slug} column={2}>

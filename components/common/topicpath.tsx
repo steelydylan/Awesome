@@ -22,7 +22,7 @@ export const TopicPath: React.VFC<Props> = ({ items }) => {
         </Link>
       </li>
       {items.map((item) => (
-        <li>
+        <li key={item.label}>
           {item.link && (
             <Link href={item.link} key={item.link}>
               <a href={item.link}>

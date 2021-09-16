@@ -13,8 +13,9 @@ import { Title } from "@/components/texts";
 import { Wrapper } from "@/components/common/wrapper";
 import blogConfig from "@/blog.config";
 import { Hero } from "@/components/common/hero";
+import { LinkButton } from "@/components/buttons";
 
-export default ({ posts }: { posts: Entry[] }) => {
+export default ({ posts, max }: { posts: Entry[]; max: number }) => {
   return (
     <Layout>
       <Hero
@@ -34,13 +35,9 @@ export default ({ posts }: { posts: Entry[] }) => {
                 </AritcleColumn>
               ))}
             </LatestArticle>
-            {posts.length > blogConfig.article.articlesPerPage && (
-              <Link href="/page/2">
-                <a href="/page/2" className="readmore">
-                  Read More
-                </a>
-              </Link>
-            )}
+            <div className="link-button-wrap">
+              {max > 1 && <LinkButton href="/page/2">Read More</LinkButton>}
+            </div>
           </ArticleList>
         </main>
       </Wrapper>
@@ -49,14 +46,9 @@ export default ({ posts }: { posts: Entry[] }) => {
           .main {
             width: 100%;
           }
-          .readmore {
-            color: #fff;
-            background-color: var(--c-primary);
-            font-size: var(--text-lg);
-            font-weight: bold;
-            display: block;
-            width: 240px;
-            margin: 0 auto;
+          .link-button-wrap {
+            text-align: center;
+            margin-top: 30px;
           }
         `}
       </style>

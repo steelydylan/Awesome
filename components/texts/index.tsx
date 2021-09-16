@@ -1,3 +1,4 @@
+import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
@@ -12,7 +13,10 @@ export const Title: React.FC = ({ children }) => {
             font-weight: 600;
             padding: 12px 0;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+              margin-bottom: 20px;
+            }
           }
           .title:after {
             content: "";

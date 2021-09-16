@@ -1,3 +1,4 @@
+import blogConfig from "@/blog.config";
 import Link from "next/link";
 import styled from "styled-components";
 import media from "styled-media-query";
@@ -83,7 +84,14 @@ export const AritcleColumn: React.FC<{ column?: number }> = ({
           .article-column {
             width: ${column ? `${100 / column}%` : "100%"};
             padding: 15px;
+            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+              width: 50%;
+            }
+            @media screen and (max-width: ${blogConfig.styles.breakPoints.small}) {
+              width: 100%;
+            }
           }
+
         `}
       </style>
     </div>

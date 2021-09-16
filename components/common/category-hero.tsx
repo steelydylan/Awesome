@@ -1,3 +1,5 @@
+import blogConfig from "@/blog.config";
+
 export const CategoryHero: React.FC<{
   title: string;
   image: string;
@@ -20,6 +22,13 @@ export const CategoryHero: React.FC<{
             border-radius: 25px;
             overflow: hidden;
             margin-bottom: 50px;
+            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+              margin-right: -10px;
+              margin-left: -10px;
+              width: calc(100% + 20px);
+              border-radius: 0;
+              margin-top: -32px;
+            }
           }
           .category-hero img {
             position: absolute;
