@@ -1,11 +1,9 @@
 import blogConfig from "@/blog.config";
-import { IconName } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Link from "next/link";
 import { SocialList } from "../common/social-list";
 
 export const Header: React.VFC = () => {
-  const socialKeys = Object.keys(blogConfig.account.social);
   return (
     <header className="header-outer">
       <div className="header-inner">
@@ -16,7 +14,12 @@ export const Header: React.VFC = () => {
           <div className="logo-wrap">
             <Link href="/">
               <a href="/">
-                <img src={blogConfig.siteLogo} alt={blogConfig.siteName} />
+                <Image
+                  src={blogConfig.siteLogo.url}
+                  alt={blogConfig.siteName}
+                  width={blogConfig.siteLogo.width}
+                  height={blogConfig.siteLogo.height}
+                />
               </a>
             </Link>
           </div>

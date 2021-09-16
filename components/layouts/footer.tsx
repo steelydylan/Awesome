@@ -1,4 +1,5 @@
 import blogConfig from "@/blog.config";
+import Image from "next/image";
 import { CategoryList } from "../common/category-list";
 import { SocialList } from "../common/social-list";
 import { TagList } from "../common/tag-list";
@@ -9,7 +10,13 @@ export const Footer: React.VFC = () => {
     <footer className="footer">
       <div className="footer-columns">
         <div className="footer-column">
-          <img src="/images/logo.svg" className="footer-logo" alt="logo" />
+          <Image
+            src={blogConfig.siteLogo.url}
+            className="footer-logo"
+            alt="logo"
+            width={blogConfig.siteLogo.width}
+            height={blogConfig.siteLogo.height}
+          />
           <div className="social-wrap">
             <SocialList />
           </div>

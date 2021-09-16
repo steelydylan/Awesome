@@ -1,5 +1,9 @@
 export default {
-  siteLogo: "/images/logo.svg",
+  siteLogo: {
+    url: "/images/logo.svg",
+    width: "201",
+    height: "39",
+  },
   siteName: "AWESOME",
   title: "AWESOME",
   description: "AWESOME Next.js TypeScript MDX Blog Theme",
