@@ -17,7 +17,7 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
       <h1 className="title">{data.title}</h1>
       {data.tags && <TagList tags={getTagList(data.tags)} />}
       {data.thumbnail && (
-        <div className="thumbnail-wrap">
+        <div className="thumbnail-wrap fadein">
           <Image
             src={data.thumbnail}
             alt=""

@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 export const Title: React.FC = ({ children }) => {
   return (
-    <h2 className="title">
+    <h2 className="title fadein">
       {children}
       <style jsx>
         {`

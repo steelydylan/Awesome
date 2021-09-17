@@ -10,8 +10,8 @@ export const Hero: React.FC<{ title: string; description: string }> = ({
       <div className="hero-cover">
         <Wrapper>
           <div className="hero-inner">
-            <h1 className="hero-title">{title}</h1>
-            <p className="hero-description">{description}</p>
+            <h1 className="hero-title fadein">{title}</h1>
+            <p className="hero-description fadein">{description}</p>
           </div>
         </Wrapper>
       </div>
