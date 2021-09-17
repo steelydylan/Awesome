@@ -37,8 +37,7 @@ export default {
   hero: {
     title: "My awesome life",
     image: "/images/plane.jpeg",
-    description:
-      "description here. description here. description here. description here. description here.",
+    description: "AWESOME Next.js TypeScript MDX Blog Theme",
   },
   navigation: [
     {
