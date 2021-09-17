@@ -1,10 +1,15 @@
 import { Tag } from "@/types";
+import Link from "next/link";
 
 export const TagList: React.VFC<{ tags: Tag[] }> = ({ tags }) => {
   return (
     <ul className="taglist">
       {tags.map((tag) => (
-        <li key={tag.id}>{tag.title}</li>
+        <li key={tag.id}>
+          <Link href={`/tags/${tag.id}`}>
+            <a href={`/tags/${tag.id}`}>{tag.title}</a>
+          </Link>
+        </li>
       ))}
       <style jsx>
         {`

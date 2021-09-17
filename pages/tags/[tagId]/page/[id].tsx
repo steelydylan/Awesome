@@ -10,32 +10,26 @@ import { ArticleCard } from "@/components/articles/card";
 import { Title } from "@/components/texts";
 import { getPosts } from "@/utils/get-posts";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { Category, Entry } from "@/types";
+import { Entry, Tag } from "@/types";
 import blogConfig from "@/blog.config";
-import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
 import { Pager } from "@/components/pager";
 
 type Props = {
-  category: Category;
+  tag: Tag;
   posts: Entry[];
   current: number;
   max: number;
 };
 
-const CategoryDeteil: NextPage<Props> = (props) => {
-  const { category, posts, current, max } = props;
+const TagPage: NextPage<Props> = (props) => {
+  const { tag, posts, current, max } = props;
 
   return (
     <Layout>
-      <Wrapper>
-        <CategoryHero
-          title={category.title}
-          image={category.imagePath}
-          description={category.description}
-        />
-      </Wrapper>
-      <Title>POSTS</Title>
+      <div className="tag">
+        <Title>{tag.title}</Title>
+      </div>
       <Wrapper>
         <ArticleList>
           <LatestArticle>
@@ -47,15 +41,26 @@ const CategoryDeteil: NextPage<Props> = (props) => {
               </AritcleColumn>
             ))}
           </LatestArticle>
-          <Pager current={current} max={max} append={`/${category.id}`} />
+          <Pager current={current} max={max} append={`/tags/${tag.id}`} />
         </ArticleList>
       </Wrapper>
+      <style jsx>
+        {`
+          .link-button-wrap {
+            text-align: center;
+            margin-top: 30px;
+          }
+          .tag {
+            margin-top: 50px;
+          }
+        `}
+      </style>
       <NextSeo
-        title={category.title}
-        description={category.description}
+        title={tag.title}
+        description={tag.title}
         openGraph={{
-          title: category.title,
-          description: category.description,
+          title: tag.title,
+          description: tag.title,
           type: "article",
         }}
       />
@@ -63,38 +68,38 @@ const CategoryDeteil: NextPage<Props> = (props) => {
   );
 };
 
-export default CategoryDeteil;
+export default TagPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getPosts();
   const paths = [];
   const map = new Map<string, number>();
   posts.forEach((post, index) => {
-    const catNum = map.get(post.data.category)
-      ? map.get(post.data.category) + 1
-      : 1;
-    map.set(post.data.category, catNum);
-    if (catNum % blogConfig.article.articlesPerPage === 0) {
-      paths.push({
-        params: {
-          id: `${catNum / blogConfig.article.articlesPerPage + 1}`,
-          categoryId: post.data.category,
-        },
-      });
-    }
+    post.data.tags.forEach((t) => {
+      const tagNum = map.get(t) ? map.get(post.data.category) + 1 : 1;
+      map.set(t, tagNum);
+      if (tagNum % blogConfig.article.articlesPerPage === 0) {
+        paths.push({
+          params: {
+            id: `${tagNum / blogConfig.article.articlesPerPage + 1}`,
+            tagId: t,
+          },
+        });
+      }
+    });
   });
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { categoryId, id } = params;
-  const category = blogConfig.categories.find((c) => c.id === categoryId);
+  const { tagId, id } = params;
+  const tag = blogConfig.tags.find((c) => c.id === tagId);
   const current = parseInt(id as string, 10) - 1;
   try {
     const posts = getPosts();
     const filteredPosts = posts
       .filter(({ data }) => {
-        return data.category === categoryId;
+        return data.tags.some((t) => t === tag.id);
       })
       .sort((postA, postB) => {
         if (postA.data.date > postB.data.date) {
@@ -120,7 +125,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         max: Math.ceil(
           filteredPosts.length / blogConfig.article.articlesPerPage
         ),
-        category,
+        tag,
         posts: slicedPosts,
       },
     };
