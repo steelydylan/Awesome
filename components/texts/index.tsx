@@ -1,6 +1,5 @@
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
-import styled from "styled-components";
 
 export const Title: React.FC = ({ children }) => {
   return (
@@ -14,7 +13,8 @@ export const Title: React.FC = ({ children }) => {
             padding: 12px 0;
             text-align: center;
             margin-bottom: 40px;
-            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
               margin-bottom: 20px;
             }
           }
@@ -59,7 +59,6 @@ export const SubTitle: React.FC = ({ children }) => {
     </h3>
   );
 };
-
 
 type DateProps = {
   date: string;

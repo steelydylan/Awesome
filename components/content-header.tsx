@@ -1,22 +1,8 @@
-import styled from "styled-components";
 import Image from "next/image";
 import dayjs from "dayjs";
-import { getAuthorFromName } from "@/utils/authors";
 import { EntryData } from "@/types";
 import { TagList } from "./common/tag-list";
 import { getTagList } from "./utils/get-tag-list";
-
-const _ContentHeader = styled.header`
-  border-bottom: solid 1px var(--c-gray-border);
-  padding-bottom: 1rem;
-`;
-
-const _Time = styled.time`
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 20px;
-  display: block;
-`;
 
 type Props = {
   data: EntryData;

@@ -1,7 +1,5 @@
 import blogConfig from "@/blog.config";
 import Link from "next/link";
-import styled from "styled-components";
-import media from "styled-media-query";
 
 export const ArticleWrapper: React.FC = ({ children }) => {
   return (
@@ -81,17 +79,55 @@ export const AritcleColumn: React.FC<{ column?: number }> = ({
       {children}
       <style jsx>
         {`
+          @keyframes articleAppear {
+            0% {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0px);
+            }
+          }
           .article-column {
+            transform: translateY(10px);
+            opacity: 0;
             width: ${column ? `${100 / column}%` : "100%"};
             padding: 15px;
-            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
               width: 50%;
             }
-            @media screen and (max-width: ${blogConfig.styles.breakPoints.small}) {
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .small}) {
               width: 100%;
             }
           }
+          .article-column {
+            &:nth-child(1) {
+              animation: articleAppear 0.3s ease 0.5s 1 forwards;
+            }
 
+            &:nth-child(2) {
+              animation: articleAppear 0.3s ease 0.6s 1 forwards;
+            }
+
+            &:nth-child(3) {
+              animation: articleAppear 0.3s ease 0.7s 1 forwards;
+            }
+
+            &:nth-child(4) {
+              animation: articleAppear 0.3s ease 0.8s 1 forwards;
+            }
+
+            &:nth-child(5) {
+              animation: articleAppear 0.3s ease 0.9s 1 forwards;
+            }
+
+            &:nth-child(6) {
+              animation: articleAppear 0.3s ease 1s 1 forwards;
+            }
+          }
         `}
       </style>
     </div>

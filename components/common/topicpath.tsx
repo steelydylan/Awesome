@@ -1,6 +1,4 @@
 import Link from "next/link";
-import styled from "styled-components";
-import media from "styled-media-query";
 
 type TopicItem = {
   label: string;
