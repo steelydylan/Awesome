@@ -32,6 +32,9 @@ export const ArticleAuthor: React.FC<{ writtenBy: string }> = ({
             margin-bottom: 40px;
             border-radius: 20px;
             display: flex;
+            :global(.article-author-image) {
+              border-radius: 50%;
+            }
             @media screen and (max-width: ${blogConfig.styles.breakPoints
                 .medium}) {
               display: block;
