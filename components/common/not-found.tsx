@@ -1,20 +1,19 @@
 import blogConfig from "@/blog.config";
+import { LinkButton } from "../buttons";
 
 export const NotFound = () => {
   return (
     <div className="inner">
       <div className="row">
-        <h1 className="title">404</h1>
+        <h1 className="title">{blogConfig.notFoundPage.title}</h1>
       </div>
       <div className="row">
-        <p className="notfound-text">
-          The page you were looking for was not found.
-        </p>
+        <p className="notfound-text">{blogConfig.notFoundPage.subtitle}</p>
       </div>
       <div className="row">
         <img
           className="notfound-image"
-          src="/images/not-found.png"
+          src={blogConfig.notFoundPage.image}
           width="320"
           height="176"
           alt="404"
@@ -22,11 +21,12 @@ export const NotFound = () => {
       </div>
       <div className="row">
         <div className="notfound-desc">
-          The page you were looking for was not found due to reasons such as
-          "already deleted" or "URL is different".
+          {blogConfig.notFoundPage.description}
         </div>
       </div>
-      <div className="row">{/* <Button href="/">トップに戻る</Button> */}</div>
+      <div className="row">
+        <LinkButton href="/">トップに戻る</LinkButton>
+      </div>
       <style jsx>
         {`
           .inner {

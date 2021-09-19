@@ -7,6 +7,13 @@ export default {
   siteName: "AWESOME",
   title: "AWESOME",
   description: "AWESOME Next.js TypeScript MDX Blog Theme",
+  notFoundPage: {
+    title: "404",
+    subtitle: "The page you were looking for was not found.",
+    image: "/images/not-found.png",
+    description: `The page you were looking for was not found due to reasons such as
+    "already deleted" or "URL is different".`,
+  },
   styles: {
     containerMaxWidth: "1280px",
     colors: {
