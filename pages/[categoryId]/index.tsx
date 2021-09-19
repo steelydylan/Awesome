@@ -34,7 +34,7 @@ const CategoryIndex: NextPage<Props> = (props) => {
           description={category.description}
         />
       </Wrapper>
-      <Title>NEW POSTS</Title>
+      <Title>{blogConfig.categoryPage.title}</Title>
       <ArticleWrapper>
         <LatestArticle>
           {posts.map((post) => (
@@ -48,7 +48,9 @@ const CategoryIndex: NextPage<Props> = (props) => {
       </ArticleWrapper>
       <div className="link-button-wrap">
         {max > 1 && (
-          <LinkButton href={`/${category.id}/page/2`}>Read More</LinkButton>
+          <LinkButton href={`/${category.id}/page/2`}>
+            {blogConfig.categoryPage.readMoreLabel}
+          </LinkButton>
         )}
       </div>
       <NextSeo

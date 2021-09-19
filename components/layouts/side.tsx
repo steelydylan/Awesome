@@ -11,7 +11,7 @@ export const Side: React.VFC = () => {
       <div className="category-list-wrap">
         <CategoryList />
       </div>
-      <SubTitle>TAG</SubTitle>
+      <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
       <TagList tags={blogConfig.tags} />
       <style jsx>
         {`

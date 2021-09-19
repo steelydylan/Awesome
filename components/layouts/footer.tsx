@@ -26,7 +26,7 @@ export const Footer: React.VFC = () => {
           <CategoryList />
         </div>
         <div className="footer-column">
-          <SubTitle>TAG</SubTitle>
+          <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
           <TagList tags={blogConfig.tags} />
         </div>
       </div>

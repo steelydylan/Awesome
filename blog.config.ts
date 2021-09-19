@@ -14,6 +14,22 @@ export default {
     description: `The page you were looking for was not found due to reasons such as
     "already deleted" or "URL is different".`,
   },
+  topPage: {
+    title: "NEW POSTS",
+    readMoreLabel: "Read More",
+  },
+  categoryPage: {
+    title: "NEW POSTS",
+    readMoreLabel: "Read More",
+  },
+  widgets: {
+    categoryList: {
+      title: "CATEGORY",
+    },
+    tagList: {
+      title: "TAG",
+    },
+  },
   styles: {
     containerMaxWidth: "1280px",
     colors: {

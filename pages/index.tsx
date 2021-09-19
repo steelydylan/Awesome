@@ -25,7 +25,7 @@ export default ({ posts, max }: { posts: Entry[]; max: number }) => {
       <Wrapper>
         <main className="main">
           <ArticleList>
-            <Title>NEW POSTS</Title>
+            <Title>{blogConfig.topPage.title}</Title>
             <LatestArticle>
               {posts.map((post) => (
                 <AritcleColumn key={post.slug} column={3}>
@@ -36,7 +36,11 @@ export default ({ posts, max }: { posts: Entry[]; max: number }) => {
               ))}
             </LatestArticle>
             <div className="link-button-wrap">
-              {max > 1 && <LinkButton href="/page/2">Read More</LinkButton>}
+              {max > 1 && (
+                <LinkButton href="/page/2">
+                  {blogConfig.topPage.readMoreLabel}
+                </LinkButton>
+              )}
             </div>
           </ArticleList>
         </main>

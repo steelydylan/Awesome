@@ -5,7 +5,7 @@ import { SubTitle } from "../texts";
 export const CategoryList = () => {
   return (
     <>
-      <SubTitle>CATEGORY</SubTitle>
+      <SubTitle>{blogConfig.widgets.categoryList.title}</SubTitle>
       <ul className="category-nav">
         {blogConfig.categories.map((category) => (
           <li key={category.id} className="category-item">
