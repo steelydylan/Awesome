@@ -19,6 +19,7 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
       {data.tags && <TagList tags={getTagList(data.tags)} />}
       <div className="thumbnail-wrap fadein">
         <Image
+          placeholder="blur"
           src={data.thumbnail || blogConfig.article.defaultThumbnail}
           alt=""
           className="thumbnail"

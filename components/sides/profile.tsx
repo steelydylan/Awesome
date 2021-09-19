@@ -9,6 +9,7 @@ export const Profile: React.FC = () => {
         <div className="profile-img-wrap">
           <div className="profile-img">
             <Image
+              placeholder="blur"
               src={blogConfig.account.image}
               width="130"
               height="130"

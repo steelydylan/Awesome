@@ -13,6 +13,7 @@ export const ArticleAuthor: React.FC<{ writtenBy: string }> = ({
     <div className="article-author">
       <div className="article-author-image-wrap">
         <Image
+          placeholder="blur"
           src={writer.image}
           width="110px"
           height="110px"

@@ -8,7 +8,13 @@ export const CategoryHero: React.FC<{
 }> = ({ title, image, description }) => {
   return (
     <div className="category-hero">
-      <Image src={image} alt="" layout="fill" className="category-hero-img" />
+      <Image
+        src={image}
+        alt=""
+        layout="fill"
+        className="category-hero-img"
+        placeholder="blur"
+      />
       <div className="category-content">
         <h2 className="category-title fadein">{title}</h2>
         <p className="category-description fadein">{description}</p>
@@ -23,7 +29,8 @@ export const CategoryHero: React.FC<{
             border-radius: 25px;
             overflow: hidden;
             margin-bottom: 50px;
-            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
               margin-right: -10px;
               margin-left: -10px;
               width: calc(100% + 20px);
