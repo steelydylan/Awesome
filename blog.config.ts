@@ -7,8 +7,8 @@ export default {
   siteName: "AWESOME",
   title: "AWESOME",
   description: "AWESOME Next.js TypeScript MDX Blog Theme",
-  googleAnalyticsCode: "G-L3BWB27B15", // G-**********
-  googleAdsenseCode: "ca-pub-1809493930689268", // ca-pub-****************
+  googleAnalyticsCode: "", // G-**********
+  googleAdsenseCode: "", // ca-pub-****************
   notFoundPage: {
     title: "404",
     subtitle: "The page you were looking for was not found.",

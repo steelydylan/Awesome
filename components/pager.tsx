@@ -84,13 +84,13 @@ export const Pager: React.VFC<Props> = (props) => {
     for (let i = 1; i <= max; i += 1) {
       if (i === current) {
         list.push(
-          <_ListItem>
+          <_ListItem key={i}>
             <span className="active">{i}</span>
           </_ListItem>
         );
       } else if (i === 1 && i !== current) {
         list.push(
-          <_ListItem>
+          <_ListItem key={i}>
             <_PagerLink href={`${append}/`}>
               <span>1</span>
             </_PagerLink>
@@ -98,7 +98,7 @@ export const Pager: React.VFC<Props> = (props) => {
         );
       } else if (Math.abs(i - current) < 4) {
         list.push(
-          <_ListItem>
+          <_ListItem key={i}>
             <_PagerLink href={`${append}/page/${i}`}>
               <span>{i}</span>
             </_PagerLink>
@@ -106,7 +106,7 @@ export const Pager: React.VFC<Props> = (props) => {
         );
       } else if (i === max && i !== current) {
         list.push(
-          <_PagerLink href={`${append}/page/${max}`}>
+          <_PagerLink href={`${append}/page/${max}`} key={i}>
             <span>{max}</span>
           </_PagerLink>
         );

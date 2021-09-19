@@ -11,7 +11,6 @@ export const Footer: React.VFC = () => {
       <div className="footer-columns">
         <div className="footer-column">
           <Image
-            placeholder="blur"
             src={blogConfig.siteLogo.url}
             className="footer-logo"
             alt="logo"

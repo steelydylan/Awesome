@@ -15,7 +15,6 @@ export const Header: React.VFC = () => {
             <Link href="/">
               <a href="/">
                 <Image
-                  placeholder="blur"
                   src={blogConfig.siteLogo.url}
                   alt={blogConfig.siteName}
                   width={blogConfig.siteLogo.width}

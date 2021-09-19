@@ -40,7 +40,8 @@ export const Hero: React.FC<{ title: string; description: string }> = ({
             font-size: 50px;
             margin-bottom: 20px;
             color: #fff;
-            @media screen and (max-width: ${blogConfig.styles.breakPoints.medium}) {
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
               font-size: 40px;
             }
           }

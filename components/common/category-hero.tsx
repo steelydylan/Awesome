@@ -8,13 +8,7 @@ export const CategoryHero: React.FC<{
 }> = ({ title, image, description }) => {
   return (
     <div className="category-hero">
-      <Image
-        src={image}
-        alt=""
-        layout="fill"
-        className="category-hero-img"
-        placeholder="blur"
-      />
+      <Image src={image} alt="" layout="fill" className="category-hero-img" />
       <div className="category-content">
         <h2 className="category-title fadein">{title}</h2>
         <p className="category-description fadein">{description}</p>

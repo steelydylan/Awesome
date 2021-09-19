@@ -30,7 +30,6 @@ export const ArticleCard: React.VFC<Props> = ({ article, className }) => {
     <div className={className}>
       <div className="article-img-wrap">
         <Image
-          placeholder="blur"
           src={article.thumbnail ?? blogConfig.article.defaultThumbnail}
           className="article-img"
           alt=""
