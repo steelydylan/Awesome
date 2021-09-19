@@ -21,7 +21,11 @@ export const getArticles = (): Article[] => {
     return data;
     // @ts-ignore
   })(require.context("@/contents", true, /\.mdx$/));
-  // @ts-ignore
-  const uniq = [...new Map(entries.map((item) => [item.slug, item])).values()];
+  const uniq = [
+    // @ts-ignore
+    ...new Map<string, Article>(
+      entries.map((item) => [item.slug, item])
+    ).values(),
+  ];
   return uniq;
 };
