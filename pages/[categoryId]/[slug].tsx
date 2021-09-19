@@ -11,6 +11,7 @@ import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
 import blogConfig from "@/blog.config";
 import { Main } from "@/components/layouts/main";
+import { Related } from "@/components/articles/related";
 
 type DetailProps = {
   entry: Entry;
@@ -43,8 +44,7 @@ export default ({ entry, related }: DetailProps) => {
                 <TopicPath items={[{ label: entry.data.title }]} />
                 <ContentHeader data={entry.data} />
                 <Content content={entry.content} />
-
-                {/* <Related posts={related} /> */}
+                {related.length > 0 && <Related related={related} />}
               </Main>
             )}
             <Side />
@@ -110,9 +110,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           data,
         },
         related: related
-          ? posts.filter((p) => {
-              return related.some((r) => r === p.slug);
-            })
+          ? posts
+              .filter((p) => {
+                return related.some((r) => r === p.slug);
+              })
+              .map((r) => {
+                const { content, ...d } = r;
+                return d;
+              })
           : [],
         category,
       },
