@@ -14,6 +14,8 @@ export default {
     description: `The page you were looking for was not found due to reasons such as
     "already deleted" or "URL is different".`,
   },
+  googleAnalyticsCode: "", // G-**********
+  googleAdsenseCode: "", // ca-pub-****************
   topPage: {
     title: "NEW POSTS",
     readMoreLabel: "Read More",

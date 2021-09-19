@@ -25,7 +25,7 @@ export const Header: React.VFC = () => {
           </div>
           <ul className="header-nav">
             {blogConfig.navigation.map((n) => (
-              <li>
+              <li key={n.url}>
                 <Link href={n.url}>
                   <a href={n.url}>{n.name}</a>
                 </Link>
