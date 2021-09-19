@@ -1,8 +1,8 @@
 import { GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
-import { getPosts } from "@/utils/get-posts";
+import { getArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
-import { Entry } from "@/types";
+import { Article } from "@/types";
 import {
   ArticleLink,
   ArticleList,
@@ -16,12 +16,12 @@ import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
 import { Main } from "@/components/layouts/main";
 
-export default ({
-  posts,
+const PageDetail = ({
+  articles,
   current,
   max,
 }: {
-  posts: Entry[];
+  articles: Article[];
   current: number;
   max: number;
 }) => {
@@ -31,10 +31,12 @@ export default ({
         <Main>
           <ArticleList>
             <LatestArticle>
-              {posts.map((post) => (
-                <AritcleColumn key={post.slug} column={2}>
-                  <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-                    <ArticleCard entry={post.data} />
+              {articles.map((article) => (
+                <AritcleColumn key={article.slug} column={2}>
+                  <ArticleLink
+                    href={`/${article.data.category}/${article.slug}`}
+                  >
+                    <ArticleCard article={article.data} />
                   </ArticleLink>
                 </AritcleColumn>
               ))}
@@ -49,10 +51,12 @@ export default ({
   );
 };
 
+export default PageDetail;
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getPosts();
+  const articles = getArticles();
   const paths = [];
-  posts.forEach((post, index) => {
+  articles.forEach((article, index) => {
     if ((index + 1) % blogConfig.article.articlesPerPage === 0) {
       paths.push({
         params: {
@@ -65,16 +69,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = ({ params }) => {
-  const posts = getPosts();
+  const articles = getArticles();
   const { id } = params;
   const current = parseInt(id, 10) - 1;
   return {
     props: {
       current: current + 1,
-      max: Math.ceil(posts.length / blogConfig.article.articlesPerPage),
-      posts: posts
-        .sort((postA, postB) => {
-          if (postA.data.date > postB.data.date) {
+      max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
+      articles: articles
+        .sort((articleA, articleB) => {
+          if (articleA.data.date > articleB.data.date) {
             return -1;
           }
           return 1;
@@ -84,8 +88,8 @@ export const getStaticProps = ({ params }) => {
           current * blogConfig.article.articlesPerPage +
             blogConfig.article.articlesPerPage
         )
-        .map((post) => {
-          const { content, ...others } = post;
+        .map((article) => {
+          const { content, ...others } = article;
           return others;
         }),
     },

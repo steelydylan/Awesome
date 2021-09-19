@@ -97,7 +97,7 @@ library.add(faTwitter, faInstagram, faGithub);
 
 export const Layout: React.FC = (props) => {
   return (
-    <div className="_theme-blog _theme-entry">
+    <div>
       <DefaultSeo {...nextSeoConfig} />
       <Head>
         <link

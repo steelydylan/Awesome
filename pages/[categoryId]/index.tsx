@@ -8,9 +8,9 @@ import {
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";
 import { Title } from "@/components/texts";
-import { getPosts } from "@/utils/get-posts";
+import { getArticles } from "@/utils/get-articles";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { Category, Entry } from "@/types";
+import { Category, Article } from "@/types";
 import blogConfig from "@/blog.config";
 import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
@@ -18,12 +18,12 @@ import { LinkButton } from "@/components/buttons";
 
 type Props = {
   category: Category;
-  posts: Entry[];
+  articles: Article[];
   max: number;
 };
 
 const CategoryIndex: NextPage<Props> = (props) => {
-  const { category, posts, max } = props;
+  const { category, articles, max } = props;
 
   return (
     <Layout>
@@ -37,10 +37,10 @@ const CategoryIndex: NextPage<Props> = (props) => {
       <Title>{blogConfig.categoryPage.title}</Title>
       <ArticleWrapper>
         <LatestArticle>
-          {posts.map((post) => (
-            <AritcleColumn key={post.slug} column={3}>
-              <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-                <ArticleCard entry={post.data} />
+          {articles.map((article) => (
+            <AritcleColumn key={article.slug} column={3}>
+              <ArticleLink href={`/${article.data.category}/${article.slug}`}>
+                <ArticleCard article={article.data} />
               </ArticleLink>
             </AritcleColumn>
           ))}
@@ -89,8 +89,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   try {
-    const posts = getPosts();
-    const filteredPosts = posts.filter(({ data }) => {
+    const articles = getArticles();
+    const filteredPosts = articles.filter(({ data }) => {
       return data.category === categoryId;
     });
 
@@ -107,7 +107,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         max: Math.ceil(
           filteredPosts.length / blogConfig.article.articlesPerPage
         ),
-        posts: slicedPosts,
+        articles: slicedPosts,
       },
     };
   } catch (e) {

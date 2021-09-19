@@ -1,9 +1,9 @@
-import { Entry } from "@/types";
+import { Article } from "@/types";
 import { AritcleColumn, ArticleLink, ArticleList, LatestArticle } from ".";
 import { Title } from "../texts";
 import { ArticleCard } from "./card";
 
-export const Related: React.FC<{ related: Entry[] }> = ({ related }) => {
+export const Related: React.FC<{ related: Article[] }> = ({ related }) => {
   return (
     <ArticleList>
       <Title>RELATED</Title>
@@ -11,7 +11,7 @@ export const Related: React.FC<{ related: Entry[] }> = ({ related }) => {
         {related.map((post) => (
           <AritcleColumn key={post.slug} column={3}>
             <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-              <ArticleCard entry={post.data} />
+              <ArticleCard article={post.data} />
             </ArticleLink>
           </AritcleColumn>
         ))}

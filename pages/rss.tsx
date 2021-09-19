@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import Rss from "rss";
-import { getPosts } from "@/utils/get-posts";
+import { getArticles } from "@/utils/get-articles";
 import blogConfig from "@/blog.config";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   res.setHeader("Content-Type", "application/rss+xml;charset=utf-8");
 
   const url = process.env.NEXT_PUBLIC_SITE_URL;
-  const posts = getPosts();
+  const articles = getArticles();
 
   const rss = new Rss({
     title: blogConfig.title,
@@ -21,12 +21,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     copyright: `©︎${blogConfig.title}`,
   });
 
-  posts.forEach((post) => {
+  articles.forEach((article) => {
     rss.item({
-      title: post.data.title,
-      url: `${url}/${post.slug}`,
-      description: post.excerpt,
-      date: new Date(post.data.date),
+      title: article.data.title,
+      url: `${url}/${article.slug}`,
+      description: article.excerpt,
+      date: new Date(article.data.date),
     });
   });
 

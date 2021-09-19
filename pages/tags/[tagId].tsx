@@ -8,20 +8,20 @@ import {
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";
 import { Title } from "@/components/texts";
-import { getPosts } from "@/utils/get-posts";
+import { getArticles } from "@/utils/get-articles";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { Entry, Tag } from "@/types";
+import { Article, Tag } from "@/types";
 import blogConfig from "@/blog.config";
 import { LinkButton } from "@/components/buttons";
 
 type Props = {
   tag: Tag;
-  posts: Entry[];
+  articles: Article[];
   max: number;
 };
 
 const TagIndex: NextPage<Props> = (props) => {
-  const { tag, posts, max } = props;
+  const { tag, articles, max } = props;
 
   return (
     <Layout>
@@ -30,10 +30,10 @@ const TagIndex: NextPage<Props> = (props) => {
       </div>
       <ArticleWrapper>
         <LatestArticle>
-          {posts.map((post) => (
-            <AritcleColumn key={post.slug} column={3}>
-              <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-                <ArticleCard entry={post.data} />
+          {articles.map((article) => (
+            <AritcleColumn key={article.slug} column={3}>
+              <ArticleLink href={`/${article.data.category}/${article.slug}`}>
+                <ArticleCard article={article.data} />
               </ArticleLink>
             </AritcleColumn>
           ))}
@@ -83,8 +83,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { tagId } = params;
   const tag = blogConfig.tags.find((c) => c.id === tagId);
   try {
-    const posts = getPosts();
-    const filteredPosts = posts.filter(({ data }) => {
+    const articles = getArticles();
+    const filteredPosts = articles.filter(({ data }) => {
       return data.tags.some((t) => t === tag.id);
     });
 
@@ -101,7 +101,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         max: Math.ceil(
           filteredPosts.length / blogConfig.article.articlesPerPage
         ),
-        posts: slicedPosts,
+        articles: slicedPosts,
       },
     };
   } catch (e) {

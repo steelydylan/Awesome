@@ -1,4 +1,4 @@
-import { EntryData } from "@/types";
+import { ArticleData } from "@/types";
 import Image from "next/image";
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
@@ -21,29 +21,29 @@ const PublishdAt: React.FC<{ date: string }> = ({ date }) => {
 };
 
 type Props = {
-  entry: EntryData;
+  article: ArticleData;
   className?: string;
 };
 
-export const ArticleCard: React.VFC<Props> = ({ entry, className }) => {
+export const ArticleCard: React.VFC<Props> = ({ article, className }) => {
   return (
     <div className={className}>
       <div className="article-img-wrap">
         <Image
-          src={entry.thumbnail ?? blogConfig.article.defaultThumbnail}
+          src={article.thumbnail ?? blogConfig.article.defaultThumbnail}
           className="article-img"
           alt=""
           layout="fill"
         />
       </div>
       <div className="article-content">
-        {entry.category && (
+        {article.category && (
           <div className="category-label-wrap">
-            <span className="category-label">{entry.category}</span>
+            <span className="category-label">{article.category}</span>
           </div>
         )}
-        <h2 className="article-title">{entry.title}</h2>
-        <PublishdAt date={entry.date} />
+        <h2 className="article-title">{article.title}</h2>
+        <PublishdAt date={article.date} />
       </div>
       <style jsx>
         {`

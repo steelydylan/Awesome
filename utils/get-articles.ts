@@ -1,7 +1,7 @@
-import { Entry } from "@/types/";
+import { Article } from "@/types/";
 
-export const getPosts = (): Entry[] => {
-  // Get posts from folder
+export const getArticles = (): Article[] => {
+  // Get articles from folder
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
     const values = keys.map(ctx);

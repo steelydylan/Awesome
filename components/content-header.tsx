@@ -1,12 +1,12 @@
 import Image from "next/image";
 import dayjs from "dayjs";
-import { EntryData } from "@/types";
+import { ArticleData } from "@/types";
+import blogConfig from "@/blog.config";
 import { TagList } from "./common/tag-list";
 import { getTagList } from "./utils/get-tag-list";
-import blogConfig from "@/blog.config";
 
 type Props = {
-  data: EntryData;
+  data: ArticleData;
 };
 
 export const ContentHeader: React.VFC<Props> = ({ data }) => {

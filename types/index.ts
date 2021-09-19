@@ -1,4 +1,4 @@
-export type EntryData = {
+export type ArticleData = {
   title: string;
   date: string;
   category: string;
@@ -13,9 +13,9 @@ export type Tag = {
   title: string;
 };
 
-export type Entry = {
+export type Article = {
   content: string;
-  data: EntryData;
+  data: ArticleData;
   slug?: string;
   id: string;
   excerpt: string;

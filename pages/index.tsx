@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { getPosts } from "@/utils/get-posts";
+import { getArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
-import { Entry } from "@/types";
+import { Article } from "@/types";
 import {
   ArticleLink,
   ArticleList,
@@ -15,7 +14,7 @@ import blogConfig from "@/blog.config";
 import { Hero } from "@/components/common/hero";
 import { LinkButton } from "@/components/buttons";
 
-export default ({ posts, max }: { posts: Entry[]; max: number }) => {
+const TopPage = ({ articles, max }: { articles: Article[]; max: number }) => {
   return (
     <Layout>
       <Hero
@@ -27,10 +26,12 @@ export default ({ posts, max }: { posts: Entry[]; max: number }) => {
           <ArticleList>
             <Title>{blogConfig.topPage.title}</Title>
             <LatestArticle>
-              {posts.map((post) => (
-                <AritcleColumn key={post.slug} column={3}>
-                  <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-                    <ArticleCard entry={post.data} />
+              {articles.map((article) => (
+                <AritcleColumn key={article.slug} column={3}>
+                  <ArticleLink
+                    href={`/${article.data.category}/${article.slug}`}
+                  >
+                    <ArticleCard article={article.data} />
                   </ArticleLink>
                 </AritcleColumn>
               ))}
@@ -60,23 +61,25 @@ export default ({ posts, max }: { posts: Entry[]; max: number }) => {
   );
 };
 
+export default TopPage;
+
 export const getStaticProps = () => {
-  const posts = getPosts();
+  const articles = getArticles();
 
   return {
     props: {
       current: 1,
-      max: Math.ceil(posts.length / blogConfig.article.articlesPerPage),
-      posts: posts
-        .sort((postA, postB) => {
-          if (postA.data.date > postB.data.date) {
+      max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
+      articles: articles
+        .sort((articleA, articleB) => {
+          if (articleA.data.date > articleB.data.date) {
             return -1;
           }
           return 1;
         })
         .slice(0, blogConfig.article.articlesPerPage)
-        .map((post) => {
-          const { content, ...others } = post;
+        .map((article) => {
+          const { content, ...others } = article;
           return others;
         }),
     },

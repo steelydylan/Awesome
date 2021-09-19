@@ -1,14 +1,14 @@
 import { GetServerSideProps } from "next";
 import { getServerSideSitemap } from "next-sitemap";
-import { getPosts } from "@/utils/get-posts";
+import { getArticles } from "@/utils/get-articles";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  const posts = getPosts();
+  const articles = getArticles();
 
-  const fields = posts.map((post) => ({
-    loc: `${baseUrl}/articles/${post.slug}`,
-    lastmod: new Date(post.data.date).toISOString(),
+  const fields = articles.map((article) => ({
+    loc: `${baseUrl}/articles/${article.slug}`,
+    lastmod: new Date(article.data.date).toISOString(),
     changefreq: "daily",
   }));
 

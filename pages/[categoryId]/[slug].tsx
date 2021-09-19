@@ -1,8 +1,8 @@
 import { renderToString } from "react-dom/server";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { NextSeo, ArticleJsonLd, ArticleJsonLdProps } from "next-seo";
-import { getPosts } from "@/utils/get-posts";
-import { Entry } from "@/types";
+import { getArticles } from "@/utils/get-articles";
+import { Article } from "@/types";
 import { Content } from "@/components/content";
 import { ContentHeader } from "@/components/content-header";
 import { Layout } from "@/components/layout";
@@ -14,18 +14,18 @@ import { Main } from "@/components/layouts/main";
 import { Related } from "@/components/articles/related";
 
 type DetailProps = {
-  entry: Entry;
+  article: Article;
   // errorCode?: number;
-  related: Entry[];
+  related: Article[];
 };
 
-export default ({ entry, related }: DetailProps) => {
+export default ({ article, related }: DetailProps) => {
   const jsonLd: ArticleJsonLdProps = {
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    title: entry.data.title,
-    images: [entry.data.thumbnail],
-    datePublished: entry.data.date,
-    description: entry.data.description ?? entry.excerpt,
+    title: article.data.title,
+    images: [article.data.thumbnail],
+    datePublished: article.data.date,
+    description: article.data.description ?? article.excerpt,
     authorName: "",
     publisherName: "",
     publisherLogo: "",
@@ -36,14 +36,14 @@ export default ({ entry, related }: DetailProps) => {
 
   return (
     <Layout>
-      {entry && (
+      {article && (
         <>
           <Wrapper>
-            {entry.data && (
+            {article.data && (
               <Main>
-                <TopicPath items={[{ label: entry.data.title }]} />
-                <ContentHeader data={entry.data} />
-                <Content content={entry.content} />
+                <TopicPath items={[{ label: article.data.title }]} />
+                <ContentHeader data={article.data} />
+                <Content content={article.content} />
                 {related.length > 0 && <Related related={related} />}
               </Main>
             )}
@@ -52,15 +52,15 @@ export default ({ entry, related }: DetailProps) => {
         </>
       )}
       <NextSeo
-        title={entry.data.title}
-        description={entry.data.description ?? entry.excerpt}
+        title={article.data.title}
+        description={article.data.description ?? article.excerpt}
         openGraph={{
-          title: entry.data.title,
-          description: entry.excerpt,
+          title: article.data.title,
+          description: article.excerpt,
           type: "article",
           images: [
             {
-              url: entry.data.thumbnail,
+              url: article.data.thumbnail,
             },
           ],
         }}
@@ -81,13 +81,13 @@ export default ({ entry, related }: DetailProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getPosts();
-  const paths = posts.map((post) => {
+  const articles = getArticles();
+  const paths = articles.map((article) => {
     return {
       params: {
-        id: post.slug,
-        categoryId: post.data.category,
-        slug: post.slug,
+        id: article.slug,
+        categoryId: article.data.category,
+        slug: article.slug,
       },
     };
   });
@@ -97,20 +97,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug, categoryId } = params;
   try {
-    const post = await import(`@/contents/${slug}/index.mdx`);
+    const article = await import(`@/contents/${slug}/index.mdx`);
     const category = blogConfig.categories.find((cat) => cat.id === categoryId);
-    const { default: Default, ...data } = post;
-    const posts = getPosts();
+    const { default: Default, ...data } = article;
+    const articles = getArticles();
     const { related } = data;
 
     return {
       props: {
-        entry: {
+        article: {
           content: renderToString(<Default />),
           data,
         },
         related: related
-          ? posts
+          ? articles
               .filter((p) => {
                 return related.some((r) => r === p.slug);
               })
