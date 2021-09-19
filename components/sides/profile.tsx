@@ -16,7 +16,7 @@ export const Profile: React.FC = () => {
             />
           </div>
         </div>
-        <p className="profile-subtitle">AUTHOR</p>
+        <p className="profile-subtitle">PROFILE</p>
         <p className="profile-name">{blogConfig.account.name}</p>
         <div className="social-list-wrap">
           <SocialList />
