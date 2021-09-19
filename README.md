@@ -192,6 +192,11 @@ export default {
 - `navigation` the header navigation
 - `article.defaultThumbnail` the default thumbnail of the each articles
 - `article.articlesPerPage` the number of the article of the each index pages
+- `writers`
+  - `id` the slug of the writer
+  - `title` the title of the writer
+  - `image` the image url of the writer
+  - `description` the description of the writer
 - `categories`
   - `id` the slug of the category. it is used for the url
   - `title` the title of the category
