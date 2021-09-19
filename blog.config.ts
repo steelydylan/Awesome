@@ -10,7 +10,7 @@ export default {
   notFoundPage: {
     title: "404",
     subtitle: "The page you were looking for was not found.",
-    image: "/images/not-found.png",
+    image: "/images/not-found.jpeg",
     description: `The page you were looking for was not found due to reasons such as
     "already deleted" or "URL is different".`,
   },

@@ -25,7 +25,7 @@ export const NotFound = () => {
         </div>
       </div>
       <div className="row">
-        <LinkButton href="/">トップに戻る</LinkButton>
+        <LinkButton href="/">Home</LinkButton>
       </div>
       <style jsx>
         {`
