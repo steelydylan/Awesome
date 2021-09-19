@@ -73,7 +73,7 @@ export default {
     },
   ],
   article: {
-    defaultThumbnail: "/images/thumbnail.png",
+    defaultThumbnail: "/images/plane.jpeg",
     articlesPerPage: 6,
   },
   categories: [

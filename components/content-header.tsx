@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { EntryData } from "@/types";
 import { TagList } from "./common/tag-list";
 import { getTagList } from "./utils/get-tag-list";
+import blogConfig from "@/blog.config";
 
 type Props = {
   data: EntryData;
@@ -16,16 +17,14 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
     <header className="content-header">
       <h1 className="title">{data.title}</h1>
       {data.tags && <TagList tags={getTagList(data.tags)} />}
-      {data.thumbnail && (
-        <div className="thumbnail-wrap fadein">
-          <Image
-            src={data.thumbnail}
-            alt=""
-            className="thumbnail"
-            layout="fill"
-          />
-        </div>
-      )}
+      <div className="thumbnail-wrap fadein">
+        <Image
+          src={data.thumbnail || blogConfig.article.defaultThumbnail}
+          alt=""
+          className="thumbnail"
+          layout="fill"
+        />
+      </div>
       <time className="time">{dateFormatted}</time>
       <style jsx>
         {`
