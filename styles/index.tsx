@@ -17,7 +17,6 @@ export const GlobalStyle = () => {
             --c-text: ${blogConfig.styles.colors.text};
             --c-border: ${blogConfig.styles.colors.border};
             --c-text-gray-lighter: ${blogConfig.styles.colors.grayLighter};
-            --c-heading-gray: ${blogConfig.styles.colors.headerBg};
             --c-primary-gradient: ${blogConfig.styles.colors.primaryGradient};
             --container-width: ${blogConfig.styles.containerMaxWidth};
           }

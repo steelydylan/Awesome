@@ -7,6 +7,8 @@ export default {
   siteName: "AWESOME",
   title: "AWESOME",
   description: "AWESOME Next.js TypeScript MDX Blog Theme",
+  googleAnalyticsCode: "", // G-**********
+  googleAdsenseCode: "", // ca-pub-****************
   notFoundPage: {
     title: "404",
     subtitle: "The page you were looking for was not found.",
@@ -14,8 +16,6 @@ export default {
     description: `The page you were looking for was not found due to reasons such as
     "already deleted" or "URL is different".`,
   },
-  googleAnalyticsCode: "", // G-**********
-  googleAdsenseCode: "", // ca-pub-****************
   topPage: {
     title: "NEW POSTS",
     readMoreLabel: "Read More",
@@ -41,7 +41,6 @@ export default {
       border: "",
       bg: "#F7F7F7",
       text: "#2C2C2C",
-      headerBg: "#F0F4F2",
       grayLighter: "#A0A0A0",
     },
     breakPoints: {
