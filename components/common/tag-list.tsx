@@ -4,13 +4,15 @@ import Link from "next/link";
 export const TagList: React.VFC<{ tags: Tag[] }> = ({ tags }) => {
   return (
     <ul className="taglist">
-      {tags.map((tag) => (
-        <li key={tag.id}>
-          <Link href={`/tags/${tag.id}`}>
-            <a href={`/tags/${tag.id}`}>{tag.title}</a>
-          </Link>
-        </li>
-      ))}
+      {tags
+        .filter((tag) => !!tag?.id)
+        .map((tag) => (
+          <li key={tag.id}>
+            <Link href={`/tags/${tag.id}`}>
+              <a href={`/tags/${tag.id}`}>{tag.title}</a>
+            </Link>
+          </li>
+        ))}
       <style jsx>
         {`
           .taglist {
