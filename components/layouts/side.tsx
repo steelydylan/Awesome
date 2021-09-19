@@ -17,6 +17,10 @@ export const Side: React.VFC = () => {
         {`
           .side {
             flex-basis: 340px;
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
+              display: none;
+            }
           }
           .category-list-wrap {
             margin-bottom: 30px;

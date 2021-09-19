@@ -39,6 +39,7 @@ export default {
       border: "",
       bg: "#F7F7F7",
       text: "#2C2C2C",
+      headerBg: "#F0F4F2",
       grayLighter: "#A0A0A0",
     },
     breakPoints: {
@@ -48,19 +49,14 @@ export default {
       small: "450px",
     },
   },
-  account: {
-    name: "Mr. AWESOME",
-    description: "profile here profile here profile here profile here",
-    image: `/images/me.png`,
-    social: {
-      twitter: "https://twitter.com/steelydylan",
-      github: "https://github.com/steelydylan",
-    },
-  },
   hero: {
     title: "My awesome life",
     image: "/images/plane.jpeg",
     description: "AWESOME Next.js TypeScript MDX Blog Theme",
+  },
+  article: {
+    defaultThumbnail: "/images/plane.jpeg",
+    articlesPerPage: 6,
   },
   navigation: [
     {
@@ -72,11 +68,36 @@ export default {
       url: `/camp`,
     },
   ],
-  article: {
-    defaultThumbnail: "/images/plane.jpeg",
-    articlesPerPage: 6,
+  account: {
+    name: "Mr. AWESOME",
+    description: "profile here profile here profile here profile here",
+    image: `/images/me.png`,
+    social: {
+      twitter: "https://twitter.com/steelydylan",
+      github: "https://github.com/steelydylan",
+    },
   },
+  writers: [
+    {
+      id: "awesome",
+      name: "Mr. AWESOME",
+      description: "profile here profile here profile here profile here",
+      image: "/images/me.png",
+    },
+    {
+      id: "steelydylan",
+      name: "steelydylan",
+      description: "profile here profile here profile here profile here",
+      image: "/images/me.png",
+    },
+  ],
   categories: [
+    {
+      id: "about",
+      title: "About",
+      imagePath: "/images/camp.jpeg",
+      description: "",
+    },
     {
       id: "camp",
       title: "Camp",

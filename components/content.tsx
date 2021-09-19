@@ -120,7 +120,8 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
               margin-bottom: 30px;
             }
             :global(h3) {
-              font-size: 1.5em;
+              font-size: 1.3em;
+              margin-bottom: 20px;
             }
             :global(h4) {
               font-size: 1.1em;

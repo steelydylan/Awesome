@@ -12,6 +12,7 @@ import { Wrapper } from "@/components/common/wrapper";
 import blogConfig from "@/blog.config";
 import { Main } from "@/components/layouts/main";
 import { Related } from "@/components/articles/related";
+import { ArticleAuthor } from "@/components/articles/author";
 
 type DetailProps = {
   article: Article;
@@ -44,6 +45,7 @@ export default ({ article, related }: DetailProps) => {
                 <TopicPath items={[{ label: article.data.title }]} />
                 <ContentHeader data={article.data} />
                 <Content content={article.content} />
+                <ArticleAuthor writtenBy={article.data.writtenBy} />
                 {related.length > 0 && <Related related={related} />}
               </Main>
             )}
