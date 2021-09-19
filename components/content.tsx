@@ -177,10 +177,10 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
               background: var(--gray2);
             }
             :global(code) {
-              color: var(--gray2);
+              color: var(--c-primary);
               padding: 0.2em 0.4em;
               margin: 0 0.2em;
-              background: var(--gray2);
+              background: var(--c-gray);
               vertical-align: middle;
               font-size: 0.95em;
               border-radius: 4px;

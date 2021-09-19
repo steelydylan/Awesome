@@ -11,7 +11,7 @@ export const GlobalStyle = () => {
             --text-md: 16px;
             --text-lg: 18px;
             --text-xl: 24px;
-            --g-gray: ${blogConfig.styles.colors.bg};
+            --c-gray: ${blogConfig.styles.colors.bg};
             --c-primary: ${blogConfig.styles.colors.primary};
             --c-base: ${blogConfig.styles.colors.base};
             --c-text: ${blogConfig.styles.colors.text};
