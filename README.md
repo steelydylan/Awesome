@@ -1,4 +1,4 @@
-# WAVI
+# AWESOME
 
 ## DEMO Page
 
