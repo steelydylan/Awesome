@@ -4,6 +4,11 @@
 
 https://theme-awesome.vercel.app/
 
+##　Download
+
+You can download latest version from here
+https://storage.googleapis.com/theme-awesome/awesome.zip
+
 ## Motivation
 
 I just want to create/update markdown files to deploy sites using Git.
