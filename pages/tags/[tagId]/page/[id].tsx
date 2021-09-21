@@ -55,15 +55,7 @@ const TagPage: NextPage<Props> = (props) => {
           }
         `}
       </style>
-      <NextSeo
-        title={tag.title}
-        description={tag.title}
-        openGraph={{
-          title: tag.title,
-          description: tag.title,
-          type: "article",
-        }}
-      />
+      <NextSeo canonical={`${blogConfig.siteUrl}${tag.id}`} />
     </Layout>
   );
 };

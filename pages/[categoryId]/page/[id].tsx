@@ -50,15 +50,7 @@ const CategoryDeteil: NextPage<Props> = (props) => {
           <Pager current={current} max={max} append={`/${category.id}`} />
         </ArticleList>
       </Wrapper>
-      <NextSeo
-        title={category.title}
-        description={category.description}
-        openGraph={{
-          title: category.title,
-          description: category.description,
-          type: "article",
-        }}
-      />
+      <NextSeo canonical={`${blogConfig.siteUrl}${category.id}`} />
     </Layout>
   );
 };

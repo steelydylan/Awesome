@@ -46,7 +46,7 @@ const PageDetail = ({
         </Main>
         <Side />
       </Wrapper>
-      <NextSeo canonical={process.env.NEXT_PUBLIC_SITE_URL} />
+      <NextSeo canonical={blogConfig.siteUrl} />
     </Layout>
   );
 };

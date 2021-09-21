@@ -5,6 +5,7 @@ export default {
     height: "39",
   },
   siteName: "AWESOME",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
   title: "AWESOME",
   description: "AWESOME Next.js TypeScript MDX Blog Theme",
   googleAnalyticsCode: "", // G-**********

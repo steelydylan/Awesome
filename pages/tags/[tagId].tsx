@@ -46,10 +46,10 @@ const TagIndex: NextPage<Props> = (props) => {
       </div>
       <NextSeo
         title={tag.title}
-        description={`${tag.title}`}
+        description={`${blogConfig.siteName} - About ${tag.title}`}
         openGraph={{
           title: tag.title,
-          description: `${tag.title}`,
+          description: `${blogConfig.siteName} - About ${tag.title}`,
           type: "article",
         }}
       />
