@@ -55,4 +55,4 @@ jobs:
           project_id: ${{ secrets.GCS_PROJECT }}
           export_default_credentials: true
       - name: upload-asset
-        run: gsutil cp ./awesome-${{env.PACKAGE_VERSION}}.zip gs://theme-awesome
+        run: gsutil cp ./awesome.zip gs://theme-awesome

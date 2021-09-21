@@ -68,7 +68,7 @@ function zip(src, dist) {
     fs.copyFileSync("tsconfig.json", "./awesome/tsconfig.json");
     fs.copyFileSync("vercel.json", "./awesome/vercel.json");
     fs.copyFileSync("yarn.lock", "./awesome/yarn.lock");
-    await zip("./awesome", `./awesome-${pkg.version}.zip`);
+    await zip("./awesome", `./awesome.zip`);
     fs.removeSync("./awesome");
   } catch (e) {
     console.error(e);
