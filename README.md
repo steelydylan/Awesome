@@ -241,6 +241,4 @@ thumbnail: /images/awesome.png
 - `category` the category of the article, it should be defined on the `blog.config.ts`
 - `related` related articles of the article, it should be the article slugs array
 - `thumbnail` the thumbnail image of the article
-
-
-
+- `description` the description of this article
