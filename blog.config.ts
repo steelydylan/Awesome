@@ -36,6 +36,7 @@ export default {
     containerMaxWidth: "1280px",
     colors: {
       primary: "#50C0A1",
+      primaryLighter: "#EFF7F3",
       primaryGradient: "linear-gradient(to right, #06A9B7, #B0DE87)",
       base: "#F2F4F3",
       border: "",

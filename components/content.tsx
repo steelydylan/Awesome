@@ -216,6 +216,16 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
               max-width: 100%;
               height: auto;
             }
+            :global(table) {
+              width: 100%;
+            }
+            :global(th) {
+              background-color: var(--c-primary-lighter);
+              border: 1px solid #eaf0ed;
+            }
+            :global(td) {
+              border: 1px solid #eaf0ed;
+            }
           }
         `}
       </style>
