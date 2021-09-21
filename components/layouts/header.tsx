@@ -23,6 +23,17 @@ export const Header: React.VFC = () => {
               </a>
             </Link>
           </div>
+          {blogConfig.subNavigation.length > 0 && (
+            <ul className="header-sub-nav">
+              {blogConfig.subNavigation.map((n) => (
+                <li key={n.url}>
+                  <Link href={n.url}>
+                    <a href={n.url}>{n.name}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
           <ul className="header-nav">
             {blogConfig.navigation.map((n) => (
               <li key={n.url}>
@@ -72,6 +83,26 @@ export const Header: React.VFC = () => {
             text-transform: uppercase;
             font-weight: bold;
             color: var(--c-text-gray-lighter);
+          }
+          .header-sub-nav {
+            position: absolute;
+            top: 0;
+            right: 0;
+            list-style-type: none;
+            display: flex;
+            font-size: var(--text-sm);
+            color: var(--c-text);
+            text-transform: uppercase;
+            li {
+              margin-right: 35px;
+              &:last-child {
+                margin-right: 10px;
+              }
+            }
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
+              display: none;
+            }
           }
           .social-list-wrap {
             position: absolute;

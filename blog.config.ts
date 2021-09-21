@@ -69,6 +69,16 @@ export default {
       url: `/camp`,
     },
   ],
+  subNavigation: [
+    {
+      name: "terms",
+      url: "/about/terms",
+    },
+    {
+      name: "privacy",
+      url: "/about/privacy",
+    },
+  ],
   account: {
     name: "Mr. AWESOME",
     description: "profile here profile here profile here profile here",

@@ -1,23 +1,5 @@
 const fs = require("fs-extra");
 const archiver = require("archiver");
-const cmd = require("node-cmd");
-const pkg = require("./package.json");
-
-const systemCmd = (cmdString) => {
-  return new Promise((resolve) => {
-    cmd.get(cmdString, (data, err, stderr) => {
-      console.log(cmdString);
-      console.log(data);
-      if (err) {
-        console.log(err);
-      }
-      if (stderr) {
-        console.log(stderr);
-      }
-      resolve(data);
-    });
-  });
-};
 
 function zip(src, dist) {
   return new Promise((resolve, reject) => {
