@@ -75,6 +75,7 @@ export const ArticleCard: React.VFC<Props> = ({ article, className }) => {
           }
           .article-title {
             font-size: var(--text-md);
+            line-height: 1.7;
           }
         `}
       </style>
