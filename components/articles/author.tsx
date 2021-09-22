@@ -39,6 +39,7 @@ export const ArticleAuthor: React.FC<{ writtenBy: string }> = ({
                 .medium}) {
               display: block;
               padding: 30px;
+              margin-top: 65px;
             }
           }
           .article-author-image-wrap {
