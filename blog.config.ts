@@ -1,4 +1,6 @@
-export default {
+import { BlogConfig } from "./types/config";
+
+const blogConfig: BlogConfig = {
   siteLogo: {
     url: "/images/logo.svg",
     width: "201",
@@ -147,3 +149,5 @@ export default {
     },
   ],
 };
+
+export default blogConfig;
