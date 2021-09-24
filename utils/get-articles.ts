@@ -27,7 +27,13 @@ export const getArticles = (): Article[] => {
       entries.map((item) => [item.slug, item])
     ).values(),
   ];
-  return uniq.filter(
-    (u) => u.data.status !== "draft" && process.env.NODE_ENV === "production"
-  );
+  return uniq.filter((u) => {
+    if (u.data.status === "open" || !u.data.status) {
+      return true;
+    }
+    if (u.data.status === "draft" && process.env.NODE_ENV === "development") {
+      return true;
+    }
+    return false;
+  });
 };
