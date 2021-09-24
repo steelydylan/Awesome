@@ -6,6 +6,7 @@ export type ArticleData = {
   tags?: string[];
   thumbnail?: string;
   description?: string;
+  status?: "open" | "draft" | "close";
 };
 
 export type Tag = {

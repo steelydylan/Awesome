@@ -27,5 +27,5 @@ export const getArticles = (): Article[] => {
       entries.map((item) => [item.slug, item])
     ).values(),
   ];
-  return uniq;
+  return uniq.filter((u) => u.data.status !== "draft");
 };
