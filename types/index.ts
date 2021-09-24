@@ -28,5 +28,4 @@ export type Category = {
   title: string;
   description: string;
   imagePath: string;
-  emoji: string;
 };

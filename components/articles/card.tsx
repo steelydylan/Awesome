@@ -2,6 +2,9 @@ import { ArticleData } from "@/types";
 import Image from "next/image";
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
+import { TagList } from "../common/tag-list";
+import { getTagList } from "../utils/get-tag-list";
+import { getCategory } from "../utils/get-category";
 
 const PublishdAt: React.FC<{ date: string }> = ({ date }) => {
   return (
@@ -37,11 +40,10 @@ export const ArticleCard: React.VFC<Props> = ({ article, className }) => {
         />
       </div>
       <div className="article-content">
-        {article.category && (
-          <div className="category-label-wrap">
-            <span className="category-label">{article.category}</span>
-          </div>
-        )}
+        <TagList
+          tags={getTagList(article.tags)}
+          category={getCategory(article.category)}
+        />
         <h2 className="article-title">{article.title}</h2>
         <PublishdAt date={article.date} />
       </div>

@@ -4,6 +4,7 @@ import { ArticleData } from "@/types";
 import blogConfig from "@/blog.config";
 import { TagList } from "./common/tag-list";
 import { getTagList } from "./utils/get-tag-list";
+import { getCategory } from "./utils/get-category";
 
 type Props = {
   data: ArticleData;
@@ -16,7 +17,12 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
   return (
     <header className="content-header">
       <h1 className="title">{data.title}</h1>
-      {data.tags && <TagList tags={getTagList(data.tags)} />}
+      {data.tags && (
+        <TagList
+          category={getCategory(data.category)}
+          tags={getTagList(data.tags)}
+        />
+      )}
       <div className="thumbnail-wrap fadein">
         <Image
           src={data.thumbnail || blogConfig.article.defaultThumbnail}
