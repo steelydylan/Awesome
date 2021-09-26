@@ -34,6 +34,10 @@ const blogConfig: BlogConfig = {
     tagList: {
       title: "TAG",
     },
+    share: {
+      title: "この記事を気に入ったらSNSでシェアしよう！",
+      socials: ["twitter", "facebook", "hatebu"],
+    },
   },
   styles: {
     containerMaxWidth: "1280px",

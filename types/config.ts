@@ -80,9 +80,15 @@ interface List {
   title: string;
 }
 
+interface Share {
+  title: string;
+  socials: ("twitter" | "facebook" | "hatebu")[];
+}
+
 interface Widgets {
   categoryList: List;
   tagList: List;
+  share: Share;
 }
 
 export interface BlogConfig {

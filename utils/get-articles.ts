@@ -1,3 +1,4 @@
+import blogConfig from "@/blog.config";
 import { Article } from "@/types/";
 
 export const getArticles = (): Article[] => {
@@ -15,6 +16,7 @@ export const getArticles = (): Article[] => {
       return {
         content,
         data: extra,
+        permalink: `${blogConfig.siteUrl}/${extra.category}/${slug}`,
         slug,
       };
     });

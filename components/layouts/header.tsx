@@ -77,6 +77,7 @@ export const Header: React.VFC = () => {
             border-bottom: 3px solid #f0f4f2;
             max-width: var(--container-width);
             margin: 0 auto;
+            overflow-x: auto;
           }
           .header-nav li {
             padding: 15px 25px;

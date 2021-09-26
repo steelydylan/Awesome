@@ -13,6 +13,10 @@ import blogConfig from "@/blog.config";
 import { Main } from "@/components/layouts/main";
 import { Related } from "@/components/articles/related";
 import { ArticleAuthor } from "@/components/articles/author";
+import { Share } from "@/components/share";
+import { TagList } from "@/components/common/tag-list";
+import { getCategory } from "@/components/utils/get-category";
+import { getTagList } from "@/components/utils/get-tag-list";
 
 type DetailProps = {
   article: Article;
@@ -45,6 +49,14 @@ export default ({ article, related }: DetailProps) => {
                 <TopicPath items={[{ label: article.data.title }]} />
                 <ContentHeader data={article.data} />
                 <Content content={article.content} />
+                <TagList
+                  category={getCategory(article.data.category)}
+                  tags={getTagList(article.data.tags)}
+                />
+                <Share
+                  permalink={article.permalink}
+                  title={article.data.title}
+                />
                 <ArticleAuthor writtenBy={article.data.writtenBy} />
                 {related.length > 0 && <Related related={related} />}
               </Main>
@@ -84,15 +96,17 @@ export default ({ article, related }: DetailProps) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = getArticles();
-  const paths = articles.map((article) => {
-    return {
-      params: {
-        id: article.slug,
-        categoryId: article.data.category,
-        slug: article.slug,
-      },
-    };
-  });
+  const paths = articles
+    .filter((a) => !a.data.original)
+    .map((article) => {
+      return {
+        params: {
+          id: article.slug,
+          categoryId: article.data.category,
+          slug: article.slug,
+        },
+      };
+    });
   return { paths, fallback: false };
 };
 
@@ -110,6 +124,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         article: {
           content: renderToString(<Default />),
           data,
+          permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
         },
         related: related
           ? articles

@@ -6,6 +6,7 @@ export type ArticleData = {
   tags?: string[];
   thumbnail?: string;
   description?: string;
+  original?: boolean;
   status?: "open" | "draft" | "close";
 };
 
@@ -17,6 +18,7 @@ export type Tag = {
 export type Article = {
   content: string;
   data: ArticleData;
+  permalink: string;
   slug?: string;
   id: string;
   excerpt: string;
