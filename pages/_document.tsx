@@ -12,17 +12,18 @@ class MyDocument extends Document<{
           {blogConfig.googleAnalyticsCode && (
             <>
               <Script
+                defer
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${blogConfig.googleAnalyticsCode}`}
               />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${blogConfig.googleAnalyticsCode}');`,
-                }}
-              />
+              <Script defer strategy="afterInteractive">
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${blogConfig.googleAnalyticsCode}');
+                `}
+              </Script>
             </>
           )}
           {blogConfig.googleAdsenseCode && (
