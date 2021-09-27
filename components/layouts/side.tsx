@@ -13,6 +13,13 @@ export const Side: React.VFC = () => {
       </div>
       <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
       <TagList tags={blogConfig.tags} />
+      <div className="fixed-sidebar">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: blogConfig.widgets.fixedSidebar.ad,
+          }}
+        />
+      </div>
       <style jsx>
         {`
           .side {
@@ -24,6 +31,10 @@ export const Side: React.VFC = () => {
           }
           .category-list-wrap {
             margin-bottom: 30px;
+          }
+          .fixed-sidebar {
+            position: sticky;
+            top: 10px;
           }
         `}
       </style>

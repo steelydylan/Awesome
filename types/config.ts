@@ -89,10 +89,15 @@ interface Share {
   socials: ("twitter" | "facebook" | "hatebu")[];
 }
 
+interface Sidebar {
+  ad: string;
+}
+
 interface Widgets {
   categoryList: List;
   tagList: List;
   share: Share;
+  fixedSidebar: Sidebar;
 }
 
 export interface BlogConfig {
