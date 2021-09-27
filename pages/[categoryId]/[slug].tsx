@@ -99,8 +99,11 @@ export default ({ article, related }: DetailProps) => {
           .after-content-ad {
             margin-top: 80px;
             :global(img) {
-              max-width: 100%;
+              width: 100%;
               height: auto;
+            }
+            :global(img[width="1"]) {
+              width: 1px;
             }
           }
         `}
