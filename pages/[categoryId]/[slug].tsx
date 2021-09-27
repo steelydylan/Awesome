@@ -59,6 +59,14 @@ export default ({ article, related }: DetailProps) => {
                 />
                 <ArticleAuthor writtenBy={article.data.writtenBy} />
                 {related.length > 0 && <Related related={related} />}
+                {!!blogConfig.articlePage.afterContentAd && (
+                  <div
+                    className="after-content-ad"
+                    dangerouslySetInnerHTML={{
+                      __html: blogConfig.articlePage.afterContentAd,
+                    }}
+                  />
+                )}
               </Main>
             )}
             <Side />
@@ -87,6 +95,9 @@ export default ({ article, related }: DetailProps) => {
             height: auto;
             margin-bottom: 40px;
             display: block;
+          }
+          .after-content-ad {
+            margin-top: 80px;
           }
         `}
       </style>

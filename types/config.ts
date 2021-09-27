@@ -29,6 +29,10 @@ interface Page {
   readMoreLabel: string;
 }
 
+interface ArticlePage {
+  afterContentAd?: string;
+}
+
 interface Hero {
   title: string;
   image: string;
@@ -111,6 +115,7 @@ export interface BlogConfig {
   notFoundPage: Hero;
   topPage: Page;
   categoryPage: Page;
+  articlePage: ArticlePage;
   widgets: Widgets;
   styles: Styles;
   footer: Footer;

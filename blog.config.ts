@@ -27,6 +27,9 @@ const blogConfig: BlogConfig = {
     title: "NEW POSTS",
     readMoreLabel: "Read More",
   },
+  articlePage: {
+    afterContentAd: "",
+  },
   widgets: {
     categoryList: {
       title: "CATEGORY",
