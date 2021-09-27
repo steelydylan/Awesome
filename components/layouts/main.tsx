@@ -7,7 +7,7 @@ export const Main: React.FC = ({ children }) => {
       <style jsx>
         {`
           .main {
-            width: 100%;
+            flex: 1;
             margin-right: 80px;
             word-break: break-all;
             @media screen and (max-width: ${blogConfig.styles.breakPoints
