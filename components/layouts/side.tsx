@@ -35,6 +35,10 @@ export const Side: React.VFC = () => {
           .fixed-sidebar {
             position: sticky;
             top: 10px;
+            :global(img) {
+              max-width: 100%;
+              height: auto;
+            }
           }
         `}
       </style>
