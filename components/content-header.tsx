@@ -23,15 +23,17 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
           tags={getTagList(data.tags)}
         />
       )}
-      <div className="thumbnail-wrap fadein">
-        <Image
-          src={data.thumbnail || blogConfig.article.defaultThumbnail}
-          alt=""
-          className="thumbnail"
-          layout="fill"
-        />
-      </div>
-      <time className="time">{dateFormatted}</time>
+      {!data.hideThumbnail && (
+        <div className="thumbnail-wrap fadein">
+          <Image
+            src={data.thumbnail || blogConfig.article.defaultThumbnail}
+            alt="thumbnail"
+            className="thumbnail"
+            layout="fill"
+          />
+        </div>
+      )}
+      {!data.hideThumbnail && <time className="time">{dateFormatted}</time>}
       <style jsx>
         {`
           .time {

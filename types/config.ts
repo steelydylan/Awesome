@@ -36,6 +36,10 @@ interface Hero {
   subtitle?: string;
 }
 
+interface Footer {
+  title: string;
+}
+
 interface Navigation {
   name: string;
   url: string;
@@ -104,6 +108,7 @@ export interface BlogConfig {
   categoryPage: Page;
   widgets: Widgets;
   styles: Styles;
+  footer: Footer;
   hero: Hero;
   navigation: Navigation[];
   subNavigation: Navigation[];

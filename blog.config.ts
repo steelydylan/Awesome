@@ -63,6 +63,9 @@ const blogConfig: BlogConfig = {
     image: "/images/plane.jpeg",
     description: "AWESOME Next.js TypeScript MDX Blog Theme",
   },
+  footer: {
+    title: "AWESOME Next.js TypeScript MDX Blog Theme",
+  },
   article: {
     defaultThumbnail: "/images/plane.jpeg",
     articlesPerPage: 6,

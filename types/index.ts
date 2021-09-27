@@ -7,6 +7,7 @@ export type ArticleData = {
   thumbnail?: string;
   description?: string;
   original?: boolean;
+  hideThumbnail?: boolean;
   status?: "open" | "draft" | "close";
 };
 
