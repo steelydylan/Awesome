@@ -17,10 +17,10 @@ export const Footer: React.VFC = () => {
             width={blogConfig.siteLogo.width}
             height={blogConfig.siteLogo.height}
           />
+          <p className="footer-description">{blogConfig.footer.title}</p>
           <div className="social-wrap">
             <SocialList />
           </div>
-          <p className="footer-description">{blogConfig.description}</p>
         </div>
         <div className="footer-column">
           <CategoryList />
