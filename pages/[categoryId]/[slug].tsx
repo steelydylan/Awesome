@@ -74,7 +74,7 @@ export default ({ article, related }: DetailProps) => {
           type: "article",
           images: [
             {
-              url: article.data.thumbnail,
+              url: `${blogConfig.siteUrl}${article.data.thumbnail}`,
             },
           ],
         }}
