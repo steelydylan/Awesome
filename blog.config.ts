@@ -38,6 +38,9 @@ const blogConfig: BlogConfig = {
       title: "この記事を気に入ったらSNSでシェアしよう！",
       socials: ["twitter", "facebook", "hatebu"],
     },
+    fixedSidebar: {
+      ad: "",
+    },
   },
   styles: {
     containerMaxWidth: "1280px",
