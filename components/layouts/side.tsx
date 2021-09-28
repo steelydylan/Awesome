@@ -5,7 +5,7 @@ import { CategoryList } from "../common/category-list";
 import { TagList } from "../common/tag-list";
 import { Toc } from "../toc";
 
-export const Side: React.VFC<{ id: string }> = ({ id }) => {
+export const Side: React.VFC<{ id?: string }> = ({ id }) => {
   return (
     <div className="side">
       <Profile />
@@ -15,7 +15,7 @@ export const Side: React.VFC<{ id: string }> = ({ id }) => {
       <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
       <TagList tags={blogConfig.tags} />
       <div className="fixed-sidebar">
-        <Toc id={id} />
+        {id && <Toc id={id} />}
         <div
           dangerouslySetInnerHTML={{
             __html: blogConfig.widgets.fixedSidebar.ad,
