@@ -143,6 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           content: renderToString(<Default />),
           data,
           permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
+          slug,
         },
         related: related
           ? articles
