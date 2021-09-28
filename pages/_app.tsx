@@ -15,8 +15,10 @@ library.add(faTwitter, faFacebook, faGithub);
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const canAnalyze =
+    blogConfig.googleAnalyticsCode && process.env.NODE_ENV === "production";
   useEffect(() => {
-    if (!blogConfig.googleAnalyticsCode) {
+    if (!canAnalyze) {
       return;
     }
     const handleRouteChange = (path: string) => {
@@ -35,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {blogConfig.googleAnalyticsCode && (
+      {canAnalyze && (
         <>
           <Script
             defer
