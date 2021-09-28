@@ -3,8 +3,9 @@ import blogConfig from "@/blog.config";
 import { Profile } from "../sides/profile";
 import { CategoryList } from "../common/category-list";
 import { TagList } from "../common/tag-list";
+import { Toc } from "../toc";
 
-export const Side: React.VFC = () => {
+export const Side: React.VFC<{ id: string }> = ({ id }) => {
   return (
     <div className="side">
       <Profile />
@@ -14,6 +15,7 @@ export const Side: React.VFC = () => {
       <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
       <TagList tags={blogConfig.tags} />
       <div className="fixed-sidebar">
+        <Toc id={id} />
         <div
           dangerouslySetInnerHTML={{
             __html: blogConfig.widgets.fixedSidebar.ad,

@@ -69,7 +69,7 @@ export default ({ article, related }: DetailProps) => {
                 )}
               </Main>
             )}
-            <Side />
+            <Side id={article.slug} />
           </Wrapper>
         </>
       )}

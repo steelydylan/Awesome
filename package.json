@@ -45,7 +45,8 @@
     "remark-images": "^2.0.0",
     "rss": "^1.2.2",
     "styled-jsx-plugin-postcss": "^4.0.1",
-    "styled-media-query": "^2.1.2"
+    "styled-media-query": "^2.1.2",
+    "tocbot": "^4.13.4"
   },
   "devDependencies": {
     "@mdx-js/loader": "^1.5.7",
