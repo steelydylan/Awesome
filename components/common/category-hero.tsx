@@ -25,6 +25,8 @@ export const CategoryHero: React.FC<{
             margin-bottom: 50px;
             @media screen and (max-width: ${blogConfig.styles.breakPoints
                 .medium}) {
+              height: auto;
+              padding-bottom: 0;
               margin-right: -10px;
               margin-left: -10px;
               width: calc(100% + 20px);
@@ -46,6 +48,12 @@ export const CategoryHero: React.FC<{
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            @media screen and (max-width: ${blogConfig.styles.breakPoints
+                .medium}) {
+              padding-top: 25px;
+              padding-bottom: 25px;
+              position: relative;
+            }
           }
           .category-title {
             text-transform: uppercase;
