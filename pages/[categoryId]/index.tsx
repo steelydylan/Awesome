@@ -99,6 +99,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       .map((p) => {
         const { content, ...others } = p;
         return others;
+      })
+      .sort((articleA, articleB) => {
+        if (articleA.data.date > articleB.data.date) {
+          return -1;
+        }
+        return 1;
       });
 
     return {
