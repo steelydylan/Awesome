@@ -37,6 +37,7 @@ Node.js and npm
 │   ├── sides                # The components related to side column
 │   ├── texts                # The components related to texts
 │   └── utils                # The utility components
+├── contents                 # Markdown files for each contents
 ├── pages                    # Next JS pages
 ├── hooks                    # React hooks functions
 ├── styles                   # Global css directory
