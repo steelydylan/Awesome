@@ -38,7 +38,7 @@ const blogConfig: BlogConfig = {
       title: "TAG",
     },
     share: {
-      title: "この記事を気に入ったらSNSでシェアしよう！",
+      title: "Share",
       socials: ["twitter", "facebook", "hatebu"],
     },
     fixedSidebar: {
@@ -94,6 +94,10 @@ const blogConfig: BlogConfig = {
     {
       name: "privacy",
       url: "/about/privacy",
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/steelydylan/Awesome",
     },
   ],
   account: {

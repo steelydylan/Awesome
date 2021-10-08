@@ -4,7 +4,7 @@
 
 https://theme-awesome.vercel.app/
 
-##　Download
+## Download
 
 You can download latest version from here
 https://storage.googleapis.com/theme-awesome/awesome.zip
