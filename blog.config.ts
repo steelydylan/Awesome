@@ -39,7 +39,7 @@ const blogConfig: BlogConfig = {
     },
     share: {
       title: "Share",
-      socials: ["twitter", "facebook", "hatebu"],
+      socials: ["twitter", "facebook"],
     },
     fixedSidebar: {
       ad: "",
@@ -101,9 +101,9 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "Mr. AWESOME",
+    name: "steelydylan",
     description: "profile here profile here profile here profile here",
-    image: `/images/me.png`,
+    image: `/images/me.jpeg`,
     social: {
       twitter: "https://twitter.com/steelydylan",
       github: "https://github.com/steelydylan",
@@ -114,13 +114,13 @@ const blogConfig: BlogConfig = {
       id: "awesome",
       name: "Mr. AWESOME",
       description: "profile here profile here profile here profile here",
-      image: "/images/me.png",
+      image: "/images/me.jpeg",
     },
     {
       id: "steelydylan",
       name: "steelydylan",
       description: "profile here profile here profile here profile here",
-      image: "/images/me.png",
+      image: "/images/me.jpeg",
     },
   ],
   categories: [

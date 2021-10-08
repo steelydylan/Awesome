@@ -242,3 +242,7 @@ thumbnail: /images/awesome.png
 - `related` related articles of the article, it should be the article slugs array
 - `thumbnail` the thumbnail image of the article
 - `description` the description of this article
+
+## License
+
+MIT License
