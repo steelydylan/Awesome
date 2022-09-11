@@ -64,6 +64,30 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
               line-height: 1.25rem;
               text-align: center;
             }
+            :global(.callout) {
+              display: flex;
+              overflow: hidden;
+              padding: 0.5rem;
+              margin-bottom: 1.25rem;
+              margin-left: 0;
+              background-color: #f3f4f6;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              align-items: center;
+              border-radius: 0.25rem;
+
+              @media (min-width: 640px) {
+                margin-left: 0.5rem;
+              }
+            }
+            :global(.callout-inner) {
+              display: flex;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+              text-align: left;
+              flex-direction: column;
+              flex-grow: 1;
+            }
             :global(i),
             :global(cite),
             :global(em) {

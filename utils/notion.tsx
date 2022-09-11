@@ -108,7 +108,7 @@ const renderBlock = (block: BlockObjectResponse) => {
   switch (type) {
     case "paragraph":
       return (
-        <p className="text-gray-500 text-md mb-6 md:mb-8">
+        <p>
           <Text text={block.paragraph.rich_text} />
         </p>
       );
@@ -170,7 +170,7 @@ const renderBlock = (block: BlockObjectResponse) => {
       // eslint-disable-next-line no-case-declarations
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
-        <figure className="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8">
+        <figure>
           <img src={src} alt={caption} />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
@@ -192,24 +192,20 @@ const renderBlock = (block: BlockObjectResponse) => {
     case "quote":
       return (
         <div className="quote">
-          <div className="quote-prepend">
-            “
-          </div>
+          <div className="quote-prepend">“</div>
           <div className="quote-inner">
             <Text text={block.quote.rich_text} />
           </div>
-          <div className="quote-append">
-            ”
-          </div>
+          <div className="quote-append">”</div>
         </div>
       );
     case "callout":
       return (
-        <div className="flex flex-wrap sm:flex-no-wrap justify-between items-center bg-gray-100 rounded overflow-hidden p-2 space-x-0 sm:space-x-2 mb-5">
+        <div className="callout">
           {block.callout.icon.type === "emoji" && (
             <span>{block.callout.icon.emoji}</span>
           )}
-          <div className="flex flex-col flex-grow text-left text-sm">
+          <div className="callout-inner">
             <Text text={block.callout.rich_text} />
           </div>
         </div>
