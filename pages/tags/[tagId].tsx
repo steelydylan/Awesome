@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { tagId } = params;
   const tag = blogConfig.tags.find((c) => c.id === tagId);
   try {
-    const articles = getArticles();
+    const articles = await getArticles();
     const filteredPosts = articles.filter(({ data }) => {
       return data.tags.some((t) => t === tag.id);
     });

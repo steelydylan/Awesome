@@ -4,7 +4,7 @@ import { getArticles } from "@/utils/get-articles";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  const articles = getArticles();
+  const articles = await getArticles();
 
   const fields = articles.map((article) => ({
     loc: `${baseUrl}/articles/${article.slug}`,

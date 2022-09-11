@@ -1,7 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { NextSeo, ArticleJsonLd, ArticleJsonLdProps } from "next-seo";
-import { getArticles } from "@/utils/get-articles";
+import { getArticle, getArticles } from "@/utils/get-articles";
 import { Article } from "@/types";
 import { Content } from "@/components/content";
 import { ContentHeader } from "@/components/content-header";
@@ -113,9 +113,9 @@ export default ({ article, related }: DetailProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getArticles();
+  const articles = await getArticles();
   const paths = articles
-    .filter((a) => !a.data.original)
+    .filter((a) => a.slug)
     .map((article) => {
       return {
         params: {
@@ -125,36 +125,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       };
     });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug, categoryId } = params;
   try {
-    const article = await import(`@/contents/${slug}/index.mdx`);
     const category = blogConfig.categories.find((cat) => cat.id === categoryId);
-    const { default: Default, ...data } = article;
-    const articles = getArticles();
-    const { related } = data;
+    const { article, related } = await getArticle(slug as string);
 
     return {
       props: {
-        article: {
-          content: renderToString(<Default />),
-          data,
-          permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
-          slug,
-        },
-        related: related
-          ? articles
-              .filter((p) => {
-                return related.some((r) => r === p.slug);
-              })
-              .map((r) => {
-                const { content, ...d } = r;
-                return d;
-              })
-          : [],
+        article,
+        related,
         category,
       },
     };
@@ -165,6 +148,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         data: {},
         errorCode: 404,
       },
+      revalidate: 60,
     };
   }
 };

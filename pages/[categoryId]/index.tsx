@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   try {
-    const articles = getArticles();
+    const articles = await getArticles();
     const filteredPosts = articles.filter(({ data }) => {
       return data.category === categoryId;
     });

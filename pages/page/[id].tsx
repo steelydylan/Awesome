@@ -54,7 +54,7 @@ const PageDetail = ({
 export default PageDetail;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getArticles();
+  const articles = await getArticles();
   const paths = [];
   articles.forEach((article, index) => {
     if ((index + 1) % blogConfig.article.articlesPerPage === 0) {
@@ -65,11 +65,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
       });
     }
   });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
-export const getStaticProps = ({ params }) => {
-  const articles = getArticles();
+export const getStaticProps = async ({ params }) => {
+  const articles = await getArticles();
   const { id } = params;
   const current = parseInt(id, 10) - 1;
   return {

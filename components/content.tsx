@@ -19,6 +19,76 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
               margin-top: 0;
             }
 
+            :global(.embed) {
+              margin-bottom: 1.25rem;
+              width: 100%;
+              height: 140px;
+              border: none;
+            }
+
+            :global(.quote) {
+              display: block;
+              padding-left: 1.25rem;
+              padding-right: 1.25rem;
+              padding-top: 1.25rem;
+              padding-bottom: 2.5rem;
+              margin-bottom: 1.25rem;
+              background-color: #ffffff;
+              color: #1f2937;
+              width: 100%;
+              border-radius: 0.5rem;
+              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            :global(.quote-prepend) {
+              color: #6366f1;
+              font-size: 1.875rem;
+              line-height: 2.25rem;
+              line-height: 1.25;
+              text-align: left;
+              height: 0.75rem;
+            }
+            :global(.quote-append) {
+              margin-top: -0.75rem;
+              color: #6366f1;
+              font-size: 1.875rem;
+              line-height: 2.25rem;
+              line-height: 1.25;
+              text-align: right;
+              height: 0.75rem;
+            }
+            :global(.quote-inner) {
+              padding-left: 1.25rem;
+              padding-right: 1.25rem;
+              color: #4b5563;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+              text-align: center;
+            }
+            :global(.callout) {
+              display: flex;
+              overflow: hidden;
+              padding: 0.5rem;
+              margin-bottom: 1.25rem;
+              margin-left: 0;
+              background-color: #f3f4f6;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              align-items: center;
+              border-radius: 0.25rem;
+
+              @media (min-width: 640px) {
+                margin-left: 0.5rem;
+              }
+            }
+            :global(.callout-inner) {
+              display: flex;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+              text-align: left;
+              flex-direction: column;
+              flex-grow: 1;
+            }
             :global(i),
             :global(cite),
             :global(em) {
