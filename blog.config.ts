@@ -1,7 +1,7 @@
 import { BlogConfig } from "./types/config";
 
 const blogConfig: BlogConfig = {
-  use: "mdx",
+  use: "notion",
   siteLogo: {
     url: "/images/logo.svg",
     width: "201",
@@ -126,14 +126,14 @@ const blogConfig: BlogConfig = {
   ],
   categories: [
     {
-      id: "about",
-      title: "About",
+      id: "oss",
+      title: "oss",
       imagePath: "/images/camp.jpeg",
       description: "",
     },
     {
-      id: "camp",
-      title: "Camp",
+      id: "service",
+      title: "service",
       imagePath: "/images/camp.jpeg",
       description: "Look at my awesome camp life",
     },

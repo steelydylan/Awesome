@@ -38,6 +38,7 @@
     "metascraper-image": "^5.11.16",
     "metascraper-title": "^5.11.16",
     "next-seo": "^4.24.0",
+    "ogp-parser": "^0.6.0",
     "postcss": "^8.3.6",
     "postcss-nested": "^5.0.6",
     "react": "^17.0.1",

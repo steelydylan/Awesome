@@ -118,19 +118,19 @@ const renderBlock = (block: BlockObjectResponse) => {
       );
     case "heading_1":
       return (
-        <h1 className="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4">
+        <h1>
           <Text text={block.heading_1.rich_text} />
         </h1>
       );
     case "heading_2":
       return (
-        <h2 className="text-gray-800 text-lg sm:text-xl font-semibold mb-2 md:mb-4">
+        <h2>
           <Text text={block.heading_2.rich_text} />
         </h2>
       );
     case "heading_3":
       return (
-        <h3 className="text-gray-800 text-md sm:text-lg font-semibold mb-2 md:mb-4">
+        <h3>
           <Text text={block.heading_3.rich_text} />
         </h3>
       );
@@ -180,31 +180,25 @@ const renderBlock = (block: BlockObjectResponse) => {
         <iframe
           title="bookmark"
           src={`/embed/?url=${block.bookmark.url}`}
-          className="w-full block border-0 h-36"
+          className="embed"
         />
       );
     case "embed":
-      return (
-        <iframe
-          title="embed"
-          src={block.embed.url}
-          className="mb-5 w-full h-50"
-        />
-      );
+      return <iframe title="embed" src={block.embed.url} className="embed" />;
     case "child_database":
       return <div>{block.child_database.title}</div>;
     case "divider":
       return <hr />;
     case "quote":
       return (
-        <div className="block w-full mx-auto rounded-lg bg-white shadow-lg px-5 pt-5 pb-10 text-gray-800 mb-5">
-          <div className="text-3xl text-indigo-500 text-left leading-tight h-3">
+        <div className="quote">
+          <div className="quote-prepend">
             “
           </div>
-          <div className="text-sm text-gray-600 text-center px-5">
+          <div className="quote-inner">
             <Text text={block.quote.rich_text} />
           </div>
-          <div className="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">
+          <div className="quote-append">
             ”
           </div>
         </div>
