@@ -244,6 +244,61 @@ thumbnail: /images/awesome.png
 - `thumbnail` the thumbnail image of the article
 - `description` the description of this article
 
+
+### Use Notion API Instead of mdx files
+
+#### **Create a database in Notion**.
+
+First, let's create a database in Notion. Type `/table` to create a table block, which will be the database.
+
+Prepare the following properties for the table
+
+- Page Title of the portfolio
+- Slug Used as the URL to display the portfolio
+- Published Whether to display the portfolio or not
+- Date The date of the portfolio
+- Authors The author of this article
+- Thumbnail Thumbnail of the article
+- Description Brief description of the portfolio
+
+#### **Get Secret Key and Database ID in Notion**.
+
+Next, We will obtain the Secret Key and Database ID from Notion.
+
+First, obtain the Secret Key.
+
+To obtain the Secret Key, go to the Notion page, Settings & Members, Integrations, Develop your own integrations, and create a new Integration.
+
+Next, invite the integration you just created to the table you just created.
+
+Click the Share button in the upper right corner of the Notion, and invite the integration you created from Invite in the popover that appears.
+
+Next, obtain the database ID.
+
+The table page has the following URL
+
+```html
+https://www.notion.so/*****************?v=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+````
+
+The ``****************`` part is the database ID, so write it down.
+
+Enter the information you have noted in the .env file
+
+```html
+NOTION_DATABASE_ID= 
+NOTION_TOKEN=
+```
+
+#### Update Blog Config
+
+In, blog.config.ts just set `notion` to `use` property
+
+```json
+  use: "notion", // mdx or notion
+```
+
+
 ## License
 
 MIT License
