@@ -260,6 +260,7 @@ Prepare the following properties for the table
 - Authors The author of this article
 - Thumbnail Thumbnail of the article
 - Description Brief description of the portfolio
+- Category category of the article
 
 ### **Get Secret Key and Database ID in Notion**.
 
