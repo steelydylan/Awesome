@@ -17,9 +17,7 @@ const Embed = ({ embed, url }: { embed: OgpParserResult; url: string }) => {
         <div className="embed-inner">
           <h1 className="embed-title">{embed.title}</h1>
           {embed.ogp["og:description"] && (
-            <p className="embed-description">
-              {embed.ogp["og:description"]}
-            </p>
+            <p className="embed-description">{embed.ogp["og:description"]}</p>
           )}
           <img
             src={`https://www.google.com/s2/favicons?sz=32&domain=${domain}`}
@@ -34,6 +32,7 @@ const Embed = ({ embed, url }: { embed: OgpParserResult; url: string }) => {
           <img
             src={embed.ogp["og:image"]?.[0] ?? ""}
             className="embed-thumb"
+            alt="open graph"
           />
         </div>
       </a>
