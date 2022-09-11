@@ -292,7 +292,7 @@ NOTION_TOKEN=
 
 #### Update Blog Config
 
-In, blog.config.ts just set `notion` to `use` property
+In, `blog.config.ts`, just set `notion` to `use` property
 
 ```json
   use: "notion", // mdx or notion
