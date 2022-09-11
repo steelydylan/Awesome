@@ -125,7 +125,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       };
     });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -148,6 +148,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         data: {},
         errorCode: 404,
       },
+      revalidate: 60,
     };
   }
 };

@@ -58,7 +58,7 @@ const CategoryDeteil: NextPage<Props> = (props) => {
 export default CategoryDeteil;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getArticles();
+  const articles = await getArticles();
   const paths = [];
   const map = new Map<string, number>();
   articles.forEach((article, index) => {
@@ -75,7 +75,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       });
     }
   });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   const current = parseInt(id as string, 10) - 1;
   try {
-    const articles = getArticles();
+    const articles = await getArticles();
     const filteredPosts = articles
       .filter(({ data }) => {
         return data.category === categoryId;

@@ -63,7 +63,7 @@ const TagPage: NextPage<Props> = (props) => {
 export default TagPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getArticles();
+  const articles = await getArticles();
   const paths = [];
   const map = new Map<string, number>();
   articles.forEach((article, index) => {
@@ -80,7 +80,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       }
     });
   });
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tag = blogConfig.tags.find((c) => c.id === tagId);
   const current = parseInt(id as string, 10) - 1;
   try {
-    const articles = getArticles();
+    const articles = await getArticles();
     const filteredPosts = articles
       .filter(({ data }) => {
         return data.tags.some((t) => t === tag.id);

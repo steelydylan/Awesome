@@ -165,10 +165,12 @@ const renderBlock = (block: BlockObjectResponse) => {
       return <p>{value.title}</p>;
     case "image":
       // eslint-disable-next-line no-case-declarations
-      const src =
-        value.type === "external" ? value.external.url : value.file.url;
+      const image = block[type];
       // eslint-disable-next-line no-case-declarations
-      const caption = value.caption ? value.caption[0]?.plain_text : "";
+      const src =
+        image.type === "external" ? image.external.url : image.file.url;
+      // eslint-disable-next-line no-case-declarations
+      const caption = image.caption ? image.caption[0]?.plain_text : "";
       return (
         <figure>
           <img src={src} alt={caption} />
