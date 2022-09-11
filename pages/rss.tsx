@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   res.setHeader("Content-Type", "application/rss+xml;charset=utf-8");
 
   const url = process.env.NEXT_PUBLIC_SITE_URL;
-  const articles = getArticles();
+  const articles = await getArticles();
 
   const rss = new Rss({
     title: blogConfig.title,
