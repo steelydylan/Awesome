@@ -25,6 +25,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@notionhq/client": "^2.2.0",
     "axios": "^0.21.1",
     "dayjs": "^1.8.21",
     "ellipsis.js": "^0.1.3",

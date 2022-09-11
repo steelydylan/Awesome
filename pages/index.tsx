@@ -63,8 +63,8 @@ const TopPage = ({ articles, max }: { articles: Article[]; max: number }) => {
 
 export default TopPage;
 
-export const getStaticProps = () => {
-  const articles = getArticles();
+export const getStaticProps = async () => {
+  const articles = await getArticles();
 
   return {
     props: {
