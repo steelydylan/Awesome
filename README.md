@@ -253,14 +253,18 @@ First, let's create a database in Notion. Type `/table` to create a table block,
 
 Prepare the following properties for the table
 
-- Page Title of the portfolio
-- Slug Used as the URL to display the portfolio
-- Published Whether to display the portfolio or not
-- Date The date of the portfolio
-- Authors The author of this article
-- Thumbnail Thumbnail of the article
-- Description Brief description of the portfolio
-- Category category of the article
+- `Page` Title of the portfolio
+- `Slug` Used as the URL to display the portfolio
+- `Published` Whether to display the portfolio or not
+- `Date` The date of the portfolio
+- `Authors` The author of this article
+- `Thumbnail` Thumbnail of the article
+- `Description` Brief description of the portfolio
+- `Category` category of the article
+
+This sample page will help
+
+https://mint-hardware-b22.notion.site/7e9876bd5ca14342aff2608403804a8a?v=25494ae1a48846e7bf6fe31fb699e185
 
 ### **Get Secret Key and Database ID in Notion**.
 
