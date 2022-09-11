@@ -126,14 +126,14 @@ const blogConfig: BlogConfig = {
   ],
   categories: [
     {
-      id: "oss",
-      title: "oss",
+      id: "about",
+      title: "About",
       imagePath: "/images/camp.jpeg",
       description: "",
     },
     {
-      id: "service",
-      title: "service",
+      id: "camp",
+      title: "Camp",
       imagePath: "/images/camp.jpeg",
       description: "Look at my awesome camp life",
     },

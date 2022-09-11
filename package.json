@@ -84,7 +84,7 @@
     "node-cmd": "^5.0.0",
     "prettier": "^2.2.1",
     "raw-loader": "^4.0.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.8.3"
   },
   "postcss": {
     "plugins": {

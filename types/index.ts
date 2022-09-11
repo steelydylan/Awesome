@@ -17,7 +17,7 @@ export type Tag = {
 };
 
 export type Article = {
-  content: string;
+  content?: string;
   data: ArticleData;
   permalink: string;
   slug?: string;

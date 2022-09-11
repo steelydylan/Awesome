@@ -34,10 +34,11 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
               padding-bottom: 2.5rem;
               margin-bottom: 1.25rem;
               background-color: #ffffff;
-              color: #1F2937;
+              color: #1f2937;
               width: 100%;
               border-radius: 0.5rem;
-              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+              box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
             }
             :global(.quote-prepend) {
               color: #6366f1;
@@ -49,7 +50,7 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
             }
             :global(.quote-append) {
               margin-top: -0.75rem;
-              color: #6366F1;
+              color: #6366f1;
               font-size: 1.875rem;
               line-height: 2.25rem;
               line-height: 1.25;
