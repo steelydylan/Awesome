@@ -245,9 +245,9 @@ thumbnail: /images/awesome.png
 - `description` the description of this article
 
 
-### Use Notion API Instead of mdx files
+## Use Notion API Instead of mdx files
 
-#### **Create a database in Notion**.
+### **Create a database in Notion**.
 
 First, let's create a database in Notion. Type `/table` to create a table block, which will be the database.
 
@@ -261,7 +261,7 @@ Prepare the following properties for the table
 - Thumbnail Thumbnail of the article
 - Description Brief description of the portfolio
 
-#### **Get Secret Key and Database ID in Notion**.
+### **Get Secret Key and Database ID in Notion**.
 
 Next, We will obtain the Secret Key and Database ID from Notion.
 
@@ -290,7 +290,7 @@ NOTION_DATABASE_ID=
 NOTION_TOKEN=
 ```
 
-#### Update Blog Config
+### Update Blog Config
 
 In, `blog.config.ts`, just set `notion` to `use` property
 
