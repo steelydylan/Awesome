@@ -12,7 +12,6 @@ const FontAwesomeIcon = dynamic(
   }
 ) as typeof Component<FontAwesomeIconProps>
 
-
 export const Share = ({
   permalink,
   title,
