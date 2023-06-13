@@ -65,6 +65,7 @@ export const getStaticProps = async () => {
   const articles = await getArticles();
 
   return {
+    revalidate: 60,
     props: {
       current: 1,
       max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),

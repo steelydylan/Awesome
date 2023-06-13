@@ -71,6 +71,7 @@ export const getStaticProps = async ({ params }) => {
   const { id } = params;
   const current = parseInt(id, 10) - 1;
   return {
+    revalidate: 60,
     props: {
       current: current + 1,
       max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),

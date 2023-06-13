@@ -112,6 +112,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       });
 
     return {
+      revalidate: 60,
       props: {
         current: current + 1,
         max: Math.ceil(

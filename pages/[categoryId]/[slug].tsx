@@ -135,6 +135,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { article, related } = await getArticle(slug as string);
 
     return {
+      revalidate: 60,
       props: {
         article,
         related,
@@ -143,12 +144,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   } catch (e) {
     return {
+      revalidate: 60,
       props: {
         content: "Not Found",
         data: {},
         errorCode: 404,
       },
-      revalidate: 60,
     };
   }
 };

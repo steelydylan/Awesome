@@ -107,6 +107,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       });
 
     return {
+      revalidate: 60,
       props: {
         current: current + 1,
         max: Math.ceil(
@@ -118,7 +119,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   } catch (e) {
     return {
-      notFound: true,
+      revalidate: 60,
+      props: {
+        notFound: true,
+      },
     };
   }
 };
