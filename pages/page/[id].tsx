@@ -4,7 +4,6 @@ import { getArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
 import { Article } from "@/types";
 import {
-  ArticleLink,
   ArticleList,
   LatestArticle,
   AritcleColumn,

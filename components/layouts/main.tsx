@@ -1,6 +1,6 @@
 import blogConfig from "@/blog.config";
 
-export const Main: React.FC = ({ children }) => {
+export const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="main">
       {children}

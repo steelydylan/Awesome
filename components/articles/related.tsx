@@ -1,5 +1,5 @@
 import { Article } from "@/types";
-import { AritcleColumn, ArticleLink, ArticleList, LatestArticle } from ".";
+import { AritcleColumn, ArticleList, LatestArticle } from ".";
 import { Title } from "../texts";
 import { ArticleCard } from "./card";
 

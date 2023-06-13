@@ -3,7 +3,6 @@ import { Layout } from "@/components/layout";
 import {
   ArticleWrapper,
   LatestArticle,
-  ArticleLink,
   AritcleColumn,
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";

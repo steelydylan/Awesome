@@ -2,7 +2,6 @@ import { NextSeo } from "next-seo";
 import { Layout } from "@/components/layout";
 import {
   LatestArticle,
-  ArticleLink,
   AritcleColumn,
   ArticleList,
 } from "@/components/articles";

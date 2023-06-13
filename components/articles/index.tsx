@@ -1,7 +1,8 @@
 import blogConfig from "@/blog.config";
-import Link from "next/link";
 
-export const ArticleWrapper: React.FC = ({ children }) => {
+export const ArticleWrapper: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div className="article-wrapper">
       {children}
@@ -21,7 +22,9 @@ export const ArticleWrapper: React.FC = ({ children }) => {
   );
 };
 
-export const LatestArticle: React.FC = ({ children }) => {
+export const LatestArticle: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div className="latest-article">
       {children}
@@ -39,23 +42,9 @@ export const LatestArticle: React.FC = ({ children }) => {
   );
 };
 
-export const ArticleLink: React.FC<{ href: string }> = ({ href, children }) => {
-  return (
-    <div>
-      {children}
-      <style jsx>
-        {`
-          .article-link {
-            display: block;
-            width: 100%;
-          }
-        `}
-      </style>
-    </div>
-  );
-};
-
-export const ArticleList: React.FC = ({ children }) => {
+export const ArticleList: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div className="article-list">
       {children}
@@ -68,10 +57,10 @@ export const ArticleList: React.FC = ({ children }) => {
   );
 };
 
-export const AritcleColumn: React.FC<{ column?: number }> = ({
-  children,
-  column = 3,
-}) => {
+export const AritcleColumn: React.FC<{
+  column?: number;
+  children: React.ReactNode;
+}> = ({ children, column = 3 }) => {
   return (
     <div className="article-column fadein">
       {children}

@@ -2,7 +2,7 @@ import blogConfig from "@/blog.config";
 import Image from "next/image";
 import { SocialList } from "../common/social-list";
 
-export const Profile: React.FC = () => {
+export const Profile = () => {
   return (
     <div className="profile">
       <div className="profile-inner">

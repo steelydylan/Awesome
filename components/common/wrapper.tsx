@@ -1,6 +1,8 @@
 import blogConfig from "@/blog.config";
 
-export const Wrapper: React.FC = ({ children }) => {
+export const Wrapper: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <div className="wrapper">
       {children}

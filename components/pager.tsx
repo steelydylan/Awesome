@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const _List: React.FC = ({ children }) => {
+const _List: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <ul className="list">
       {children}
@@ -19,7 +19,7 @@ const _List: React.FC = ({ children }) => {
   );
 };
 
-const _ListItem: React.FC = ({ children }) => {
+const _ListItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <li className="list-item">
       {children}
@@ -45,7 +45,10 @@ const _ListItem: React.FC = ({ children }) => {
   );
 };
 
-const _PagerLink: React.FC<{ href: string }> = ({ children, href }) => {
+const _PagerLink: React.FC<{ href: string; children: React.ReactNode }> = ({
+  children,
+  href,
+}) => {
   return (
     <Link href={href} className="link">
       {children}

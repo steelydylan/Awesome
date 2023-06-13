@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-export const LinkButton: React.FC<{ href: string }> = ({ href, children }) => {
+export const LinkButton: React.FC<{
+  href: string;
+  children: React.ReactNode;
+}> = ({ href, children }) => {
   return (
     <>
       <Link href={href} className="link-button">

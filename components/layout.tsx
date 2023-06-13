@@ -95,7 +95,7 @@ const nextSeoConfig: NextSeoProps = {
 
 library.add(faTwitter, faInstagram, faGithub);
 
-export const Layout: React.FC = (props) => {
+export const Layout: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <div>
       <DefaultSeo {...nextSeoConfig} />
