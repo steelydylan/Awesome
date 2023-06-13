@@ -33,11 +33,10 @@ const PageDetail = ({
             <LatestArticle>
               {articles.map((article) => (
                 <AritcleColumn key={article.slug} column={2}>
-                  <ArticleLink
+                  <ArticleCard
+                    article={article.data}
                     href={`/${article.data.category}/${article.slug}`}
-                  >
-                    <ArticleCard article={article.data} />
-                  </ArticleLink>
+                  />
                 </AritcleColumn>
               ))}
             </LatestArticle>

@@ -47,24 +47,22 @@ const _ListItem: React.FC = ({ children }) => {
 
 const _PagerLink: React.FC<{ href: string }> = ({ children, href }) => {
   return (
-    <Link href={href}>
-      <a className="link" href={href}>
-        {children}
-        <style jsx>
-          {`
-            .link {
-              color: var(--c-primary);
-              border: 1px solid var(--c-primary);
-              width: 30px;
-              height: 30px;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-          `}
-        </style>
-      </a>
+    <Link href={href} className="link">
+      {children}
+      <style jsx>
+        {`
+          :global(.link) {
+            color: var(--c-primary);
+            border: 1px solid var(--c-primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        `}
+      </style>
     </Link>
   );
 };

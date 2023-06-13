@@ -9,18 +9,14 @@ export const TagList: React.VFC<{ category?: Category; tags: Tag[] }> = ({
     <ul className="taglist">
       {category && (
         <li>
-          <Link href={`/${category.id}`}>
-            <a href={`/${category.id}`}>{category.title}</a>
-          </Link>
+          <Link href={`/${category.id}`}>{category.title}</Link>
         </li>
       )}
       {tags
         .filter((tag) => !!tag?.id)
         .map((tag) => (
           <li key={tag.id}>
-            <Link href={`/tags/${tag.id}`}>
-              <a href={`/tags/${tag.id}`}>{tag.title}</a>
-            </Link>
+            <Link href={`/tags/${tag.id}`}>{tag.title}</Link>
           </li>
         ))}
       <style jsx>

@@ -2,6 +2,7 @@ import { ArticleData } from "@/types";
 import Image from "next/image";
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
+import Link from "next/link";
 import { TagList } from "../common/tag-list";
 import { getTagList } from "../utils/get-tag-list";
 import { getCategory } from "../utils/get-category";
@@ -25,26 +26,31 @@ const PublishdAt: React.FC<{ date: string }> = ({ date }) => {
 
 type Props = {
   article: ArticleData;
+  href: string;
   className?: string;
 };
 
-export const ArticleCard: React.VFC<Props> = ({ article, className }) => {
+export const ArticleCard: React.VFC<Props> = ({ article, className, href }) => {
   return (
     <div className={className}>
       <div className="article-img-wrap">
-        <Image
-          src={article.thumbnail ?? blogConfig.article.defaultThumbnail}
-          className="article-img"
-          alt=""
-          layout="fill"
-        />
+        <Link href={href}>
+          <Image
+            src={article.thumbnail ?? blogConfig.article.defaultThumbnail}
+            className="article-img"
+            alt=""
+            fill
+          />
+        </Link>
       </div>
       <div className="article-content">
         <TagList
           tags={getTagList(article.tags)}
           category={getCategory(article.category)}
         />
-        <h2 className="article-title">{article.title}</h2>
+        <h2 className="article-title">
+          <Link href={href}>{article.title}</Link>
+        </h2>
         <PublishdAt date={article.date} />
       </div>
       <style jsx>

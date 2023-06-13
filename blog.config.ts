@@ -4,8 +4,8 @@ const blogConfig: BlogConfig = {
   use: "mdx", // mdx or notion
   siteLogo: {
     url: "/images/logo.svg",
-    width: "201",
-    height: "39",
+    width: 201,
+    height: 39,
   },
   siteName: "AWESOME",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL,

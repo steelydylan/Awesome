@@ -39,9 +39,10 @@ const CategoryIndex: NextPage<Props> = (props) => {
         <LatestArticle>
           {articles.map((article) => (
             <AritcleColumn key={article.slug} column={3}>
-              <ArticleLink href={`/${article.data.category}/${article.slug}`}>
-                <ArticleCard article={article.data} />
-              </ArticleLink>
+              <ArticleCard
+                article={article.data}
+                href={`/${article.data.category}/${article.slug}`}
+              />
             </AritcleColumn>
           ))}
         </LatestArticle>

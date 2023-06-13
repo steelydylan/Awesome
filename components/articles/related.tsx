@@ -10,9 +10,10 @@ export const Related: React.FC<{ related: Article[] }> = ({ related }) => {
       <LatestArticle>
         {related.map((post) => (
           <AritcleColumn key={post.slug} column={3}>
-            <ArticleLink href={`/${post.data.category}/${post.slug}`}>
-              <ArticleCard article={post.data} />
-            </ArticleLink>
+            <ArticleCard
+              article={post.data}
+              href={`/${post.data.category}/${post.slug}`}
+            />
           </AritcleColumn>
         ))}
       </LatestArticle>

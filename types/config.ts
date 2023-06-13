@@ -51,8 +51,8 @@ interface Navigation {
 
 interface SiteLogo {
   url: string;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
 }
 
 interface BreakPoints {

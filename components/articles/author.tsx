@@ -13,9 +13,10 @@ export const ArticleAuthor: React.FC<{ writtenBy: string }> = ({
     <div className="article-author">
       <div className="article-author-image-wrap">
         <Image
+          alt=""
           src={writer.image}
-          width="110px"
-          height="110px"
+          width={110}
+          height={110}
           className="article-author-image"
         />
       </div>

@@ -9,9 +9,7 @@ export const CategoryList = () => {
       <ul className="category-nav">
         {blogConfig.categories.map((category) => (
           <li key={category.id} className="category-item">
-            <Link href={`/${category.id}`}>
-              <a href={`/${category.id}`}>{category.title}</a>
-            </Link>
+            <Link href={`/${category.id}`}>{category.title}</Link>
           </li>
         ))}
       </ul>
@@ -42,7 +40,7 @@ export const CategoryList = () => {
             top: 50%;
             margin-top: -10px;
           }
-          .category-item a {
+          .category-item :global(a) {
             margin-top: -20px;
             margin-bottom: -20px;
             padding-top: 20px;
@@ -50,7 +48,7 @@ export const CategoryList = () => {
             display: block;
             position: relative;
           }
-          .category-item a:before {
+          .category-item :global(a):before {
             content: "";
             position: absolute;
             right: 10px;
@@ -63,7 +61,7 @@ export const CategoryList = () => {
             display: block;
             background-color: #fff;
           }
-          .category-item a:after {
+          .category-item :global(a):after {
             content: "";
             position: absolute;
             right: 10px;
