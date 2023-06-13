@@ -1,7 +1,7 @@
 import { BlogConfig } from "./types/config";
 
 const blogConfig: BlogConfig = {
-  use: "mdx", // mdx or notion
+  use: "notion", // mdx or notion
   siteLogo: {
     url: "/images/logo.svg",
     width: 201,
