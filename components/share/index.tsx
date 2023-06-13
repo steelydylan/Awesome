@@ -1,7 +1,17 @@
 import blogConfig from "@/blog.config";
 import { IconName } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HatebuIcon } from "../icons/hatebu";
+import dynamic from "next/dynamic";
+import { Component } from "react";
+import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+
+const FontAwesomeIcon = dynamic(
+  () => import("@fortawesome/react-fontawesome").then((mod) => mod.FontAwesomeIcon),
+  {
+    ssr: false,
+  }
+) as typeof Component<FontAwesomeIconProps>
+
 
 export const Share = ({
   permalink,
