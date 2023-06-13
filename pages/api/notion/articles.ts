@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const getValidation = {
   query: z.object({
-    current: z.number(),
+    current: z.string(),
     tagId: z.string().optional(),
     categoryId: z.string().optional(),
   }),
@@ -41,7 +41,7 @@ const router = createRouter();
 router.get(validate(getValidation), async (req, res) => {
   const { current, categoryId, tagId } = req.query;
   const articles = await getFilteredArticles({
-    current,
+    current: parseInt(current),
     categoryId,
     tagId,
   });
