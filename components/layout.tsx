@@ -29,68 +29,7 @@ const nextSeoConfig: NextSeoProps = {
   defaultTitle: blogConfig.title,
   titleTemplate: `%s | ${blogConfig.title}`,
   description: blogConfig.description,
-  additionalLinkTags: [
-    {
-      rel: "icon",
-      href: `${faviconPath}/favicon.ico`,
-    },
-    {
-      rel: "apple-touch-icon",
-      sizes: "57x57",
-      href: `${faviconPath}/apple-touch-icon-57x57.png`,
-    },
-    {
-      rel: "apple-touch-icon",
-      sizes: "60x60",
-      href: `${faviconPath}/apple-touch-icon-60x60.png`,
-    },
-    {
-      rel: "apple-touch-icon",
-      sizes: "72x72",
-      href: `${faviconPath}/apple-touch-icon-72x72.png`,
-    },
-    {
-      rel: "apple-touch-icon",
-      sizes: "114x114",
-      href: `${faviconPath}/apple-touch-icon-114x114.png`,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "36x36",
-      href: `${faviconPath}/android-chrome-36x36.png`,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "48x48",
-      href: `${faviconPath}/android-chrome-48x48.png`,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "72x72",
-      href: `${faviconPath}/android-chrome-72x72.png`,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "36x36",
-      href: `${faviconPath}/icon-36x36.png`,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "48x48",
-      href: `${faviconPath}/icon-48x48.png`,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "72x72",
-      href: `${faviconPath}/icon-72x72.png`,
-    },
-  ],
+  additionalLinkTags: [],
 };
 
 library.add(faTwitter, faInstagram, faGithub);
