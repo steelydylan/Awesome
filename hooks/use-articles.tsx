@@ -24,7 +24,7 @@ export const useArticles = ({
     query: {
       categoryId,
       tagId,
-      current,
+      current: `${current}`,
     },
   });
   return {
