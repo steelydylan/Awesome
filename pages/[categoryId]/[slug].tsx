@@ -17,6 +17,7 @@ import { Share } from "@/components/share";
 import { TagList } from "@/components/common/tag-list";
 import { getCategory } from "@/components/utils/get-category";
 import { getTagList } from "@/components/utils/get-tag-list";
+import { useArticle } from "@/hooks/use-article";
 
 type DetailProps = {
   article: Article;
@@ -24,7 +25,8 @@ type DetailProps = {
   related: Article[];
 };
 
-export default ({ article, related }: DetailProps) => {
+export default ({ article: defaultArticle, related }: DetailProps) => {
+  const { article } = useArticle(defaultArticle.slug, defaultArticle);
   const jsonLd: ArticleJsonLdProps = {
     url: process.env.NEXT_PUBLIC_SITE_URL,
     title: article.data.title,
@@ -35,9 +37,6 @@ export default ({ article, related }: DetailProps) => {
     publisherName: "",
     publisherLogo: "",
   };
-  // if (errorCode) {
-  //   return <ErrorComponent statusCode={errorCode} />;
-  // }
 
   return (
     <Layout>

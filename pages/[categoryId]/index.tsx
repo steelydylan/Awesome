@@ -14,6 +14,7 @@ import blogConfig from "@/blog.config";
 import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
 import { LinkButton } from "@/components/buttons";
+import { useArticles } from "@/hooks/use-articles";
 
 type Props = {
   category: Category;
@@ -22,7 +23,12 @@ type Props = {
 };
 
 const CategoryIndex: NextPage<Props> = (props) => {
-  const { category, articles, max } = props;
+  const { category, articles: defaultArticles, max } = props;
+  const { articles } = useArticles({
+    defaultArticles,
+    current: 0,
+    categoryId: category.id,
+  });
 
   return (
     <Layout>

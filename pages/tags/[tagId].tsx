@@ -12,6 +12,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Article, Tag } from "@/types";
 import blogConfig from "@/blog.config";
 import { LinkButton } from "@/components/buttons";
+import { useArticles } from "@/hooks/use-articles";
 
 type Props = {
   tag: Tag;
@@ -20,7 +21,12 @@ type Props = {
 };
 
 const TagIndex: NextPage<Props> = (props) => {
-  const { tag, articles, max } = props;
+  const { tag, articles: defaultArticles, max } = props;
+  const { articles } = useArticles({
+    defaultArticles,
+    current: 0,
+    tagId: tag.id,
+  });
 
   return (
     <Layout>

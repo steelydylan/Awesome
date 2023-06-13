@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import { SWRConfig } from "swr";
 import Script from "next/script";
 import { GlobalStyle } from "@/styles";
 import {
@@ -64,7 +65,15 @@ export default function App({ Component, pageProps }: AppProps) {
         </>
       )}
       <GlobalStyle />
-      <Component {...pageProps} />
+      <SWRConfig
+        value={{
+          refreshInterval: 3000,
+          fetcher: (resource, init) =>
+            fetch(resource, init).then((res) => res.json()),
+        }}
+      >
+        <Component {...pageProps} />
+      </SWRConfig>
     </>
   );
 }

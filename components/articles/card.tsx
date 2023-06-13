@@ -35,11 +35,11 @@ export function ArticleCard({ article, className, href }: Props) {
     <div className={className}>
       <div className="article-img-wrap">
         <Link href={href}>
-          <Image
+          <img
             src={article.thumbnail ?? blogConfig.article.defaultThumbnail}
             className="article-img"
             alt=""
-            fill
+            loading="lazy"
           />
         </Link>
       </div>
@@ -78,8 +78,13 @@ export function ArticleCard({ article, className, href }: Props) {
             border-radius: 20px;
             overflow: hidden;
           }
-          .article-img-wrap :global(.article-img) {
+          .article-img {
             object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
           }
           .article-title {
             font-size: var(--text-md);

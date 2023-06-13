@@ -13,6 +13,7 @@ import { Article, Tag } from "@/types";
 import blogConfig from "@/blog.config";
 import { Wrapper } from "@/components/common/wrapper";
 import { Pager } from "@/components/pager";
+import { useArticles } from "@/hooks/use-articles";
 
 type Props = {
   tag: Tag;
@@ -22,7 +23,12 @@ type Props = {
 };
 
 const TagPage: NextPage<Props> = (props) => {
-  const { tag, articles, current, max } = props;
+  const { tag, articles: defaultArticles, current, max } = props;
+  const { articles } = useArticles({
+    defaultArticles,
+    current,
+    tagId: tag.id,
+  });
 
   return (
     <Layout>

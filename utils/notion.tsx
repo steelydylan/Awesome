@@ -74,6 +74,7 @@ export const getDatabase = async (
         category: item.category,
         writtenBy: item.authors,
         thumbnail: item.thumbnail,
+        id: item.id,
         description: item.description,
         status: item.published ? "open" : "draft",
       },
@@ -173,7 +174,7 @@ const renderBlock = (block: BlockObjectResponse) => {
       const caption = image.caption ? image.caption[0]?.plain_text : "";
       return (
         <figure>
-          <img src={src} alt={caption} />
+          <img src={src} alt={caption} data-id={id} />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       );

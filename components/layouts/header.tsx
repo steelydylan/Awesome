@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SocialList } from "../common/social-list";
 
-export const Header: React.VFC = () => {
+export function Header() {
   return (
     <header className="header-outer">
       <div className="header-inner">
@@ -112,4 +112,4 @@ export const Header: React.VFC = () => {
       </style>
     </header>
   );
-};
+}

@@ -7,7 +7,7 @@ import { getTagList } from "./utils/get-tag-list";
 import { getCategory } from "./utils/get-category";
 
 type Props = {
-  data: ArticleData;
+  data?: ArticleData;
 };
 
 export const ContentHeader: React.VFC<Props> = ({ data }) => {

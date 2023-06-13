@@ -14,9 +14,10 @@ import blogConfig from "@/blog.config";
 import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
 import { Main } from "@/components/layouts/main";
+import { useArticles } from "@/hooks/use-articles";
 
 const PageDetail = ({
-  articles,
+  articles: defaultArticles,
   current,
   max,
 }: {
@@ -24,6 +25,8 @@ const PageDetail = ({
   current: number;
   max: number;
 }) => {
+  const { articles } = useArticles({ defaultArticles, current });
+
   return (
     <Layout>
       <Wrapper>
