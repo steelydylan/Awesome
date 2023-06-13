@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const fields = articles.map((article) => ({
     loc: `${baseUrl}/articles/${article.slug}`,
     lastmod: new Date(article.data.date).toISOString(),
-    changefreq: "daily",
+    changefreq: "daily" as const,
   }));
 
   return getServerSideSitemap(ctx, fields);
