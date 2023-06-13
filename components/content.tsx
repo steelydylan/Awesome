@@ -1,6 +1,6 @@
 import { useHighlight } from "@/hooks/use-highlight";
 
-export const Content: React.FC<{ content: string }> = ({ content }) => {
+export function Content({ content }: { content: string }) {
   const highlightRef = useHighlight();
   return (
     <>
@@ -301,4 +301,4 @@ export const Content: React.FC<{ content: string }> = ({ content }) => {
       </style>
     </>
   );
-};
+}

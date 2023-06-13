@@ -3,7 +3,7 @@ import { AritcleColumn, ArticleList, LatestArticle } from ".";
 import { Title } from "../texts";
 import { ArticleCard } from "./card";
 
-export const Related: React.FC<{ related: Article[] }> = ({ related }) => {
+export function Related({ related }: { related: Article[] }) {
   return (
     <ArticleList>
       <Title>RELATED</Title>
@@ -19,4 +19,4 @@ export const Related: React.FC<{ related: Article[] }> = ({ related }) => {
       </LatestArticle>
     </ArticleList>
   );
-};
+}

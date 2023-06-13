@@ -1,8 +1,6 @@
 import blogConfig from "@/blog.config";
 
-export const Wrapper: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export function Wrapper({ children }: { children: React.ReactNode }) {
   return (
     <div className="wrapper">
       {children}
@@ -23,4 +21,4 @@ export const Wrapper: React.FC<{ children: React.ReactNode }> = ({
       </style>
     </div>
   );
-};
+}

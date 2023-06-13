@@ -1,14 +1,18 @@
 import blogConfig from "@/blog.config";
 import Image from "next/image";
 
-export const CategoryHero: React.FC<{
+export function CategoryHero({
+  title,
+  image,
+  description,
+}: {
   title: string;
   image: string;
   description: string;
-}> = ({ title, image, description }) => {
+}) {
   return (
     <div className="category-hero">
-      <Image src={image} alt="" layout="fill" className="category-hero-img" />
+      <Image src={image} alt="" fill className="category-hero-img" />
       <div className="category-content">
         <h2 className="category-title fadein">{title}</h2>
         <p className="category-description fadein">{description}</p>
@@ -68,4 +72,4 @@ export const CategoryHero: React.FC<{
       </style>
     </div>
   );
-};
+}

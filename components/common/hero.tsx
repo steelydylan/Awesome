@@ -1,10 +1,13 @@
 import blogConfig from "@/blog.config";
 import { Wrapper } from "./wrapper";
 
-export const Hero: React.FC<{ title: string; description: string }> = ({
+export function Hero({
   title,
   description,
-}) => {
+}: {
+  title: string;
+  description: string;
+}) {
   return (
     <div className="hero">
       <div className="hero-cover">
@@ -49,4 +52,4 @@ export const Hero: React.FC<{ title: string; description: string }> = ({
       </style>
     </div>
   );
-};
+}

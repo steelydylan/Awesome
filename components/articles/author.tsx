@@ -1,9 +1,7 @@
 import blogConfig from "@/blog.config";
 import Image from "next/image";
 
-export const ArticleAuthor: React.FC<{ writtenBy: string }> = ({
-  writtenBy,
-}) => {
+export function ArticleAuthor({ writtenBy }: { writtenBy: string }) {
   const writer = blogConfig.writers.find((w) => w.id === writtenBy);
   if (!writer) {
     return null;
@@ -78,4 +76,4 @@ export const ArticleAuthor: React.FC<{ writtenBy: string }> = ({
       </style>
     </div>
   );
-};
+}

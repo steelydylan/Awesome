@@ -10,10 +10,7 @@ hljs.registerLanguage("xml", xml);
 hljs.registerLanguage("css", css);
 hljs.registerLanguage("js", js);
 
-export const CodeBlock: React.FC<{ text: any; lang: string }> = ({
-  text,
-  lang,
-}) => {
+export function CodeBlock({ text, lang }: { text: any; lang: string }) {
   useLayoutEffect(() => {
     hljs.initHighlighting();
     (hljs.initHighlighting as any).called = false;
@@ -26,4 +23,4 @@ export const CodeBlock: React.FC<{ text: any; lang: string }> = ({
       </code>
     </pre>
   );
-};
+}

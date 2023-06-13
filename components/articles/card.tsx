@@ -7,7 +7,7 @@ import { TagList } from "../common/tag-list";
 import { getTagList } from "../utils/get-tag-list";
 import { getCategory } from "../utils/get-category";
 
-const PublishdAt: React.FC<{ date: string }> = ({ date }) => {
+function PublishdAt({ date }: { date: string }) {
   return (
     <div className="published-at">
       {dayjs(date).format("YYYY.MM.DD")}
@@ -22,7 +22,7 @@ const PublishdAt: React.FC<{ date: string }> = ({ date }) => {
       </style>
     </div>
   );
-};
+}
 
 type Props = {
   article: ArticleData;
@@ -30,7 +30,7 @@ type Props = {
   className?: string;
 };
 
-export const ArticleCard: React.VFC<Props> = ({ article, className, href }) => {
+export function ArticleCard({ article, className, href }: Props) {
   return (
     <div className={className}>
       <div className="article-img-wrap">
@@ -89,4 +89,4 @@ export const ArticleCard: React.VFC<Props> = ({ article, className, href }) => {
       </style>
     </div>
   );
-};
+}

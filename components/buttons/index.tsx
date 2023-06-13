@@ -1,9 +1,12 @@
 import Link from "next/link";
 
-export const LinkButton: React.FC<{
+export function LinkButton({
+  href,
+  children,
+}: {
   href: string;
   children: React.ReactNode;
-}> = ({ href, children }) => {
+}) {
   return (
     <>
       <Link href={href} className="link-button">
@@ -24,4 +27,4 @@ export const LinkButton: React.FC<{
       </style>
     </>
   );
-};
+}

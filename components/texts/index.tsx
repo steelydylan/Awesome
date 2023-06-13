@@ -1,9 +1,7 @@
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
 
-export const Title: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export function Title({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="title fadein">
       {children}
@@ -34,11 +32,9 @@ export const Title: React.FC<{ children: React.ReactNode }> = ({
       </style>
     </h2>
   );
-};
+}
 
-export const SubTitle: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export function SubTitle({ children }: { children: React.ReactNode }) {
   return (
     <h3 className="subtitle">
       {children}
@@ -62,7 +58,7 @@ export const SubTitle: React.FC<{ children: React.ReactNode }> = ({
       </style>
     </h3>
   );
-};
+}
 
 type DateProps = {
   date: string;

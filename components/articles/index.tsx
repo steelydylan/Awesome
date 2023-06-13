@@ -1,8 +1,6 @@
 import blogConfig from "@/blog.config";
 
-export const ArticleWrapper: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export function ArticleWrapper({ children }: { children: React.ReactNode }) {
   return (
     <div className="article-wrapper">
       {children}
@@ -20,11 +18,9 @@ export const ArticleWrapper: React.FC<{ children: React.ReactNode }> = ({
       </style>
     </div>
   );
-};
+}
 
-export const LatestArticle: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export function LatestArticle({ children }: { children: React.ReactNode }) {
   return (
     <div className="latest-article">
       {children}
@@ -40,11 +36,9 @@ export const LatestArticle: React.FC<{ children: React.ReactNode }> = ({
       </style>
     </div>
   );
-};
+}
 
-export const ArticleList: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export function ArticleList({ children }: { children: React.ReactNode }) {
   return (
     <div className="article-list">
       {children}
@@ -55,12 +49,15 @@ export const ArticleList: React.FC<{ children: React.ReactNode }> = ({
       `}</style>
     </div>
   );
-};
+}
 
-export const AritcleColumn: React.FC<{
+export function AritcleColumn({
+  children,
+  column = 3,
+}: {
   column?: number;
   children: React.ReactNode;
-}> = ({ children, column = 3 }) => {
+}) {
   return (
     <div className="article-column fadein">
       {children}
@@ -82,4 +79,4 @@ export const AritcleColumn: React.FC<{
       </style>
     </div>
   );
-};
+}

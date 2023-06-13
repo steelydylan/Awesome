@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const _List: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+function _List({ children }: { children: React.ReactNode }) {
   return (
     <ul className="list">
       {children}
@@ -17,9 +17,9 @@ const _List: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </style>
     </ul>
   );
-};
+}
 
-const _ListItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+function _ListItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="list-item">
       {children}
@@ -43,12 +43,15 @@ const _ListItem: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </style>
     </li>
   );
-};
+}
 
-const _PagerLink: React.FC<{ href: string; children: React.ReactNode }> = ({
+function _PagerLink({
   children,
   href,
-}) => {
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <Link href={href} className="link">
       {children}
@@ -68,7 +71,7 @@ const _PagerLink: React.FC<{ href: string; children: React.ReactNode }> = ({
       </style>
     </Link>
   );
-};
+}
 
 type Props = {
   max?: number;
@@ -77,9 +80,8 @@ type Props = {
   append?: string;
 };
 
-export const Pager: React.VFC<Props> = (props) => {
+export function Pager({ max, current, className, append = "" }: Props) {
   const list: React.ReactNode[] = [];
-  const { max, current, className, append = "" } = props;
 
   if (max && current) {
     for (let i = 1; i <= max; i += 1) {
@@ -120,4 +122,4 @@ export const Pager: React.VFC<Props> = (props) => {
       <_List>{list}</_List>
     </div>
   );
-};
+}

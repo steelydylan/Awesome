@@ -1,6 +1,6 @@
 import blogConfig from "@/blog.config";
 
-export const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export function Main({ children }: { children: React.ReactNode }) {
   return (
     <div className="main">
       {children}
@@ -19,4 +19,4 @@ export const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </style>
     </div>
   );
-};
+}

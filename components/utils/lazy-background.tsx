@@ -6,7 +6,7 @@ type Props = React.HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode;
 };
 
-export const LazyBackground: React.FC<Props> = (props) => {
+export function LazyBackground(props: Props) {
   const { className, url, children, ...attrs } = props;
   const [style, setStyle] = useState<React.CSSProperties>({});
 
@@ -21,4 +21,4 @@ export const LazyBackground: React.FC<Props> = (props) => {
       {props.children}
     </div>
   );
-};
+}
