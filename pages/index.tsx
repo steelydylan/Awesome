@@ -1,4 +1,4 @@
-import { getArticles } from "@/utils/get-articles";
+import { getArticles, getFilteredArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
 import { Article } from "@/types";
 import {
@@ -78,20 +78,11 @@ export const getStaticProps = async () => {
   return {
     revalidate: 60,
     props: {
-      current: 1,
+      current: 0,
       max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
-      articles: articles
-        .sort((articleA, articleB) => {
-          if (articleA.data.date > articleB.data.date) {
-            return -1;
-          }
-          return 1;
-        })
-        .slice(0, blogConfig.article.articlesPerPage)
-        .map((article) => {
-          const { content, ...others } = article;
-          return others;
-        }),
+      articles: await getFilteredArticles({
+        current: 0,
+      }),
     },
   };
 };

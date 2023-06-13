@@ -1,6 +1,6 @@
 import { GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
-import { getArticles } from "@/utils/get-articles";
+import { getArticles, getFilteredArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
 import { Article } from "@/types";
 import {
@@ -42,7 +42,7 @@ const PageDetail = ({
                 </AritcleColumn>
               ))}
             </LatestArticle>
-            <Pager current={current} max={max} />
+            <Pager current={current + 1} max={max} />
           </ArticleList>
         </Main>
         <Side />
@@ -76,24 +76,11 @@ export const getStaticProps = async ({ params }) => {
   return {
     revalidate: 60,
     props: {
-      current: current + 1,
+      current,
       max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
-      articles: articles
-        .sort((articleA, articleB) => {
-          if (articleA.data.date > articleB.data.date) {
-            return -1;
-          }
-          return 1;
-        })
-        .slice(
-          current * blogConfig.article.articlesPerPage,
-          current * blogConfig.article.articlesPerPage +
-            blogConfig.article.articlesPerPage
-        )
-        .map((article) => {
-          const { content, ...others } = article;
-          return others;
-        }),
+      articles: await getFilteredArticles({
+        current,
+      }),
     },
   };
 };

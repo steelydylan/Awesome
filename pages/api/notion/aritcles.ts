@@ -1,5 +1,5 @@
 import blogConfig from "@/blog.config";
-import { getArticles } from "@/utils/get-articles";
+import { getArticles, getFilteredArticles } from "@/utils/get-articles";
 import { ApiHandler, createRouter, validate } from "next-zod-router";
 import { z } from "zod";
 
@@ -40,36 +40,12 @@ const router = createRouter();
 
 router.get(validate(getValidation), async (req, res) => {
   const { current, categoryId, tagId } = req.query;
-  const articles = await getArticles();
-  const results = articles
-    .filter(({ data }) => {
-      if (!categoryId) {
-        return true;
-      }
-      return data.category === categoryId;
-    })
-    .filter(({ data }) => {
-      if (!tagId) {
-        return true;
-      }
-      return data.tags.some((t) => t === tagId);
-    })
-    .sort((articleA, articleB) => {
-      if (articleA.data.date > articleB.data.date) {
-        return -1;
-      }
-      return 1;
-    })
-    .slice(
-      current * blogConfig.article.articlesPerPage,
-      current * blogConfig.article.articlesPerPage +
-        blogConfig.article.articlesPerPage
-    )
-    .map((article) => {
-      const { content, ...others } = article;
-      return others;
-    });
-  res.status(200).json({ articles: results });
+  const articles = await getFilteredArticles({
+    current,
+    categoryId,
+    tagId,
+  });
+  res.status(200).json({ articles });
 });
 
 export type GetHandler = ApiHandler<typeof getValidation>;
