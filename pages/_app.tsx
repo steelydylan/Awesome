@@ -67,7 +67,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <SWRConfig
         value={{
-          refreshInterval: 3000,
           fetcher: (resource, init) =>
             fetch(resource, init).then((res) => res.json()),
         }}
