@@ -6,11 +6,7 @@ import { TagList } from "./common/tag-list";
 import { getTagList } from "./utils/get-tag-list";
 import { getCategory } from "./utils/get-category";
 
-type Props = {
-  data?: ArticleData;
-};
-
-export const ContentHeader: React.VFC<Props> = ({ data }) => {
+export function ContentHeader({ data }: { data?: ArticleData }) {
   const dateFormatted = data.date
     ? dayjs(data.date).format("YYYY-MM-DD")
     : null;
@@ -68,4 +64,4 @@ export const ContentHeader: React.VFC<Props> = ({ data }) => {
       </style>
     </header>
   );
-};
+}

@@ -16,7 +16,7 @@ export const useArticle = (slug: string, defaultArticle: Article) => {
     },
   });
   return {
-    article: data?.article ?? defaultArticle,
+    article: (data?.article ?? defaultArticle) as Article,
     isLoading: !error && !data,
     isError: error,
   };

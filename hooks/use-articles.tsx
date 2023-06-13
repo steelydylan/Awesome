@@ -28,7 +28,7 @@ export const useArticles = ({
     },
   });
   return {
-    articles: data?.articles ?? defaultArticles,
+    articles: (data?.articles ?? defaultArticles) as Article[],
     isLoading: !error && !data,
     isError: error,
   };
