@@ -1,4 +1,3 @@
-import Image from "next/image";
 import dayjs from "dayjs";
 import { ArticleData } from "@/types";
 import blogConfig from "@/blog.config";
@@ -21,11 +20,10 @@ export function ContentHeader({ data }: { data?: ArticleData }) {
       )}
       {!data.hideThumbnail && (
         <div className="thumbnail-wrap fadein">
-          <Image
+          <img
             src={data.thumbnail || blogConfig.article.defaultThumbnail}
             alt="thumbnail"
             className="thumbnail"
-            layout="fill"
           />
         </div>
       )}
@@ -57,8 +55,13 @@ export function ContentHeader({ data }: { data?: ArticleData }) {
             overflow: hidden;
             margin-bottom: 10px;
           }
-          .thumbnail-wrap :global(.thumbnail) {
+          .thumbnail {
             object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
           }
         `}
       </style>

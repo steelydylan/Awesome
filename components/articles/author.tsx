@@ -1,5 +1,4 @@
 import blogConfig from "@/blog.config";
-import Image from "next/image";
 
 export function ArticleAuthor({ writtenBy }: { writtenBy: string }) {
   const writer = blogConfig.writers.find((w) => w.id === writtenBy);
@@ -10,8 +9,9 @@ export function ArticleAuthor({ writtenBy }: { writtenBy: string }) {
   return (
     <div className="article-author">
       <div className="article-author-image-wrap">
-        <Image
+        <img
           alt=""
+          loading="lazy"
           src={writer.image}
           width={110}
           height={110}

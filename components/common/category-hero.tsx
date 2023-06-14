@@ -1,5 +1,4 @@
 import blogConfig from "@/blog.config";
-import Image from "next/image";
 
 export function CategoryHero({
   title,
@@ -12,7 +11,7 @@ export function CategoryHero({
 }) {
   return (
     <div className="category-hero">
-      <Image src={image} alt="" fill className="category-hero-img" />
+      <img src={image} alt="" className="category-hero-img" />
       <div className="category-content">
         <h2 className="category-title fadein">{title}</h2>
         <p className="category-description fadein">{description}</p>
@@ -38,7 +37,12 @@ export function CategoryHero({
               margin-top: -32px;
             }
           }
-          .category-hero :global(.category-hero-img) {
+          .category-hero-img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             object-fit: cover;
           }
           .category-content {

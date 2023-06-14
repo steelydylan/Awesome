@@ -1,5 +1,4 @@
 import blogConfig from "@/blog.config";
-import Image from "next/image";
 import Link from "next/link";
 import { SocialList } from "../common/social-list";
 
@@ -13,7 +12,7 @@ export function Header() {
           </div>
           <div className="logo-wrap">
             <Link href="/">
-              <Image
+              <img
                 src={blogConfig.siteLogo.url}
                 alt={blogConfig.siteName}
                 width={blogConfig.siteLogo.width}

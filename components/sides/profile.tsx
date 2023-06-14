@@ -1,5 +1,4 @@
 import blogConfig from "@/blog.config";
-import Image from "next/image";
 import { SocialList } from "../common/social-list";
 
 export const Profile = () => {
@@ -8,7 +7,8 @@ export const Profile = () => {
       <div className="profile-inner">
         <div className="profile-img-wrap">
           <div className="profile-img">
-            <Image
+            <img
+              loading="lazy"
               src={blogConfig.account.image}
               width="130"
               height="130"

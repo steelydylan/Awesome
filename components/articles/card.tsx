@@ -1,5 +1,4 @@
 import { ArticleData } from "@/types";
-import Image from "next/image";
 import blogConfig from "@/blog.config";
 import dayjs from "dayjs";
 import Link from "next/link";
