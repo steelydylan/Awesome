@@ -15,6 +15,7 @@ import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
 import { Pager } from "@/components/pager";
 import { useArticles } from "@/hooks/use-articles";
+import { NotFound } from "@/components/common/not-found";
 
 type Props = {
   category: Category;
@@ -25,6 +26,11 @@ type Props = {
 
 const CategoryDeteil: NextPage<Props> = (props) => {
   const { category, articles: defaultArticles, current, max } = props;
+
+  if (!defaultArticles || defaultArticles.length === 0) {
+    return <NotFound />;
+  }
+
   const { articles } = useArticles({
     defaultArticles,
     current,

@@ -26,7 +26,7 @@ type Props = {
 const CategoryIndex: NextPage<Props> = (props) => {
   const { category, articles: defaultArticles, max } = props;
 
-  if (defaultArticles?.length === 0) {
+  if (!defaultArticles || defaultArticles.length === 0) {
     return <NotFound />;
   }
 
