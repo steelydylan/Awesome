@@ -58,8 +58,14 @@ function toBuffer(arrayBuffer: ArrayBuffer) {
 }
 
 export const uploadToR2 = async (path, destination) => {
+  const filePath = `${process.env.CLOUD_FLARE_BUCKET_URL}/${destination}`;
+  const fileRes = await fetch(filePath);
+  // もし既に存在していたらアップロードしない
+  if (fileRes.status === 200) {
+    return filePath;
+  }
+
   const s3 = buildS3();
-  // await purgeCache(destination)
   const res = await fetch(path).then((res) => res.arrayBuffer());
   const data = await s3
     .upload(
@@ -77,5 +83,5 @@ export const uploadToR2 = async (path, destination) => {
       }
     )
     .promise();
-  return data;
+  return filePath;
 };

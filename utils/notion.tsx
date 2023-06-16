@@ -56,11 +56,13 @@ export const getDatabase = async (
               let src = property.files[0]?.file?.url;
               if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
                 const fileName =
+                  result.id +
+                  "_" +
                   result.last_edited_time +
+                  "_" +
                   src.split("/").pop().replace(/\?.*$/, "");
                 try {
-                  await uploadToR2(src, fileName);
-                  src = `${process.env.CLOUD_FLARE_BUCKET_URL}/${fileName}`;
+                  src = await uploadToR2(src, fileName);
                 } catch (e) {
                   console.log(e);
                 }
@@ -193,11 +195,12 @@ const renderBlock = async (block: BlockObjectResponse) => {
       // eslint-disable-next-line no-case-declarations
       const caption = image.caption ? image.caption[0]?.plain_text : "";
       if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
-        const fileName =
-          block.last_edited_time + src.split("/").pop().replace(/\?.*$/, "");
+        const fileName = block.id + "_";
+        block.last_edited_time +
+          "_" +
+          src.split("/").pop().replace(/\?.*$/, "");
         try {
-          await uploadToR2(src, fileName);
-          src = `${process.env.CLOUD_FLARE_BUCKET_URL}/${fileName}`;
+          src = await uploadToR2(src, fileName);
         } catch (e) {
           console.log(e);
         }
