@@ -270,13 +270,7 @@ export const getNotionArticle = async (blocks: BlockObjectResponse[]) => {
     })
   );
 
-  return (
-    <div>
-      {blocks.map((block) => (
-        <Fragment key={block.id}>{finalBlocks}</Fragment>
-      ))}
-    </div>
-  );
+  return <div>{finalBlocks}</div>;
 };
 
 export const getArticleFromNotion = async (slug: string) => {
