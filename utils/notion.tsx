@@ -190,8 +190,7 @@ const renderBlock = async (block: BlockObjectResponse) => {
       const caption = image.caption ? image.caption[0]?.plain_text : "";
       if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
         const fileName =
-          block.last_edited_time +
-          src.split("/").pop().replace(/\?.+/, "").replace(/\?.+/, "");
+          block.last_edited_time + src.split("/").pop().replace(/\?.+/, "");
         await uploadToR2(src, fileName);
         src = `https://${process.env.CLOUD_FLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUD_FLARE_BUCKET_NAME}/${fileName}`;
       }
