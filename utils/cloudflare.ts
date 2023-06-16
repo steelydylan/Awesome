@@ -1,6 +1,5 @@
 import S3 from "aws-sdk/clients/s3.js";
 import fs from "fs";
-import https from "https";
 
 const fileTypeFromFile = (path: string) => {
   const ext = path.split(".").pop();
@@ -49,28 +48,34 @@ const buildS3 = () => {
   });
 };
 
+function toBuffer(arrayBuffer: ArrayBuffer) {
+  const buffer = Buffer.alloc(arrayBuffer.byteLength);
+  const view = new Uint8Array(arrayBuffer);
+  for (let i = 0; i < buffer.length; ++i) {
+    buffer[i] = view[i];
+  }
+  return buffer;
+}
+
 export const uploadToR2 = async (path, destination) => {
   const s3 = buildS3();
   // await purgeCache(destination)
-  return new Promise((resolve, reject) => {
-    https.get(path, async (res) => {
-      const data = await s3
-        .upload(
-          {
-            Bucket: process.env.CLOUD_FLARE_BUCKET,
-            Key: destination,
-            Body: res,
-            ContentType: fileTypeFromFile(path),
-          },
-          (err, data) => {
-            if (err) {
-              console.log(err);
-            }
-            console.log(data);
-          }
-        )
-        .promise();
-      resolve(data);
-    });
-  });
+  const res = await fetch(path).then((res) => res.arrayBuffer());
+  const data = await s3
+    .upload(
+      {
+        Bucket: process.env.CLOUD_FLARE_BUCKET_NAME,
+        Key: destination,
+        Body: toBuffer(res),
+        ContentType: fileTypeFromFile(destination),
+      },
+      (err, data) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log(data);
+      }
+    )
+    .promise();
+  return data;
 };

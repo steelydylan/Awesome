@@ -57,9 +57,13 @@ export const getDatabase = async (
               if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
                 const fileName =
                   result.last_edited_time +
-                  src.split("/").pop().replace(/\?.+/, "");
-                await uploadToR2(src, fileName);
-                src = `https://${process.env.CLOUD_FLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUD_FLARE_BUCKET_NAME}/${fileName}`;
+                  src.split("/").pop().replace(/\?.*$/, "");
+                try {
+                  await uploadToR2(src, fileName);
+                  src = `${process.env.CLOUD_FLARE_BUCKET_URL}/${fileName}`;
+                } catch (e) {
+                  console.log(e);
+                }
               }
               item[key.toLowerCase()] = src;
             }
@@ -190,9 +194,13 @@ const renderBlock = async (block: BlockObjectResponse) => {
       const caption = image.caption ? image.caption[0]?.plain_text : "";
       if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
         const fileName =
-          block.last_edited_time + src.split("/").pop().replace(/\?.+/, "");
-        await uploadToR2(src, fileName);
-        src = `https://${process.env.CLOUD_FLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUD_FLARE_BUCKET_NAME}/${fileName}`;
+          block.last_edited_time + src.split("/").pop().replace(/\?.*$/, "");
+        try {
+          await uploadToR2(src, fileName);
+          src = `${process.env.CLOUD_FLARE_BUCKET_URL}/${fileName}`;
+        } catch (e) {
+          console.log(e);
+        }
       }
       return (
         <figure>
