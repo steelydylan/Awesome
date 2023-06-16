@@ -11,6 +11,7 @@ import {
 import { Fragment } from "react";
 import { renderToString } from "react-dom/server";
 import { Article } from "../types";
+import { uploadToR2 } from "./cloudflare";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -25,66 +26,78 @@ export const getDatabase = async (
     ...args,
   });
   const { results } = response;
-  const posts = results.map((result: PageObjectResponse) => {
-    const d = result.properties;
-    const item = {
-      thumbnail: "",
-      authors: "",
-      slug: "",
-      published: "no",
-      date: "",
-      description: "",
-      page: "",
-      id: result.id,
-      category: "",
-    };
-    Object.keys(d).forEach((key) => {
-      const property = d[key];
-      if (property.type === "people") {
-        item[key.toLowerCase()] = property.people
-          .map((p) => (p as any).name)
-          .join(",");
-      } else if (property.type === "rich_text") {
-        item[key.toLowerCase()] = property.rich_text[0]?.plain_text;
-      } else if (property.type === "files") {
-        if (property.files[0]?.type === "external") {
-          item[key.toLowerCase()] = property.files[0].name;
-        } else {
-          item[key.toLowerCase()] = property.files[0]?.file?.url;
-        }
-      } else if (property.type === "title") {
-        item[key.toLowerCase()] = property.title[0]?.plain_text;
-      } else if (property.type === "checkbox") {
-        item[key.toLowerCase()] = property.checkbox;
-      } else if (property.type === "multi_select") {
-        item[key.toLowerCase()] = property.multi_select?.[0]?.name;
-      } else if (property.type === "select") {
-        item[key.toLowerCase()] = property.select?.name;
-      } else if (property.type === "date") {
-        item[key.toLowerCase()] = property.date?.start;
-      }
-    });
-    // console.log(item)
-    return {
-      content: "",
-      data: {
-        tags: [],
-        title: item.page,
-        date: item.date,
-        category: item.category,
-        writtenBy: item.authors,
-        thumbnail: item.thumbnail,
+  const posts = await Promise.all(
+    results.map(async (result: PageObjectResponse) => {
+      const d = result.properties;
+      const item = {
+        thumbnail: "",
+        authors: "",
+        slug: "",
+        published: "no",
+        date: "",
+        description: "",
+        page: "",
+        id: result.id,
+        category: "",
+      };
+      await Promise.all(
+        Object.keys(d).map(async (key) => {
+          const property = d[key];
+          if (property.type === "people") {
+            item[key.toLowerCase()] = property.people
+              .map((p) => (p as any).name)
+              .join(",");
+          } else if (property.type === "rich_text") {
+            item[key.toLowerCase()] = property.rich_text[0]?.plain_text;
+          } else if (property.type === "files") {
+            if (property.files[0]?.type === "external") {
+              item[key.toLowerCase()] = property.files[0].name;
+            } else {
+              let src = property.files[0]?.file?.url;
+              if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
+                const fileName =
+                  result.last_edited_time +
+                  src.split("/").pop().replace(/\?.+/, "");
+                await uploadToR2(src, fileName);
+                src = `https://${process.env.CLOUD_FLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUD_FLARE_BUCKET_NAME}/${fileName}`;
+              }
+              item[key.toLowerCase()] = src;
+            }
+          } else if (property.type === "title") {
+            item[key.toLowerCase()] = property.title[0]?.plain_text;
+          } else if (property.type === "checkbox") {
+            item[key.toLowerCase()] = property.checkbox;
+          } else if (property.type === "multi_select") {
+            item[key.toLowerCase()] = property.multi_select?.[0]?.name;
+          } else if (property.type === "select") {
+            item[key.toLowerCase()] = property.select?.name;
+          } else if (property.type === "date") {
+            item[key.toLowerCase()] = property.date?.start;
+          }
+        })
+      );
+      // console.log(item)
+      return {
+        content: "",
+        data: {
+          tags: [],
+          title: item.page,
+          date: item.date,
+          category: item.category,
+          writtenBy: item.authors,
+          thumbnail: item.thumbnail,
+          id: item.id,
+          description: item.description,
+          status: item.published ? "open" : "draft",
+        },
+        permalink: `${blogConfig.siteUrl}/${item.category}/${item.slug}`,
+        slug: item.slug,
         id: item.id,
-        description: item.description,
-        status: item.published ? "open" : "draft",
-      },
-      permalink: `${blogConfig.siteUrl}/${item.category}/${item.slug}`,
-      slug: item.slug,
-      id: item.id,
-      excerpt: "",
-      related: [],
-    } as Article;
-  });
+        excerpt: "",
+        related: [],
+      } as Article;
+    })
+  );
 
   return posts;
 };
@@ -102,7 +115,7 @@ export const getBlocks = async (blockId: string) => {
   return response.results as BlockObjectResponse[];
 };
 
-const renderBlock = (block: BlockObjectResponse) => {
+const renderBlock = async (block: BlockObjectResponse) => {
   const { type, id } = block;
   const value = block[type];
 
@@ -152,14 +165,18 @@ const renderBlock = (block: BlockObjectResponse) => {
         </div>
       );
     case "toggle":
+      const blocks = await Promise.all(
+        value.children?.map(async (b) => {
+          const block = await renderBlock(b);
+          return <Fragment key={b.id}>{block}</Fragment>;
+        })
+      );
       return (
         <details>
           <summary>
             <Text text={block.toggle.rich_text} />
           </summary>
-          {value.children?.map((b) => (
-            <Fragment key={b.id}>{renderBlock(b)}</Fragment>
-          ))}
+          {blocks}
         </details>
       );
     case "child_page":
@@ -168,13 +185,19 @@ const renderBlock = (block: BlockObjectResponse) => {
       // eslint-disable-next-line no-case-declarations
       const image = block[type];
       // eslint-disable-next-line no-case-declarations
-      const src =
-        image.type === "external" ? image.external.url : image.file.url;
+      let src = image.type === "external" ? image.external.url : image.file.url;
       // eslint-disable-next-line no-case-declarations
       const caption = image.caption ? image.caption[0]?.plain_text : "";
+      if (src && process.env.CLOUD_FLARE_ACCOUNT_ID) {
+        const fileName =
+          block.last_edited_time +
+          src.split("/").pop().replace(/\?.+/, "").replace(/\?.+/, "");
+        await uploadToR2(src, fileName);
+        src = `https://${process.env.CLOUD_FLARE_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.CLOUD_FLARE_BUCKET_NAME}/${fileName}`;
+      }
       return (
         <figure>
-          <img src={src} alt={caption} data-id={id} />
+          <img src={src} alt={caption} />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       );
@@ -228,20 +251,23 @@ const renderBlock = (block: BlockObjectResponse) => {
   }
 };
 
-export const getNotionArticle = (blocks: BlockObjectResponse[]) => {
+export const getNotionArticle = async (blocks: BlockObjectResponse[]) => {
   if (!blocks) {
     return <div />;
   }
 
+  const finalBlocks = await Promise.all(
+    blocks.map(async (block) => {
+      const renderedBlock = await renderBlock(block);
+      return <Fragment key={block.id}>{renderedBlock}</Fragment>;
+    })
+  );
+
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12">
-      <article className="max-w-screen-md px-4 md:px-8 mx-auto">
-        <section>
-          {blocks.map((block) => (
-            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-          ))}
-        </section>
-      </article>
+    <div>
+      {blocks.map((block) => (
+        <Fragment key={block.id}>{finalBlocks}</Fragment>
+      ))}
     </div>
   );
 };
@@ -291,11 +317,11 @@ export const getArticleFromNotion = async (slug: string) => {
     return block;
   });
 
+  const notionArticle = await getNotionArticle(blocksWithChildDatabase);
+
   const article = {
     ...post,
-    content: renderToString(
-      <div>{getNotionArticle(blocksWithChildDatabase)}</div>
-    ),
+    content: renderToString(<div>{notionArticle}</div>),
   } as Article;
 
   return {

@@ -1,5 +1,6 @@
 import S3 from "aws-sdk/clients/s3.js";
 import fs from "fs";
+import https from "https";
 
 const fileTypeFromFile = (path: string) => {
   const ext = path.split(".").pop();
@@ -51,14 +52,25 @@ const buildS3 = () => {
 export const uploadToR2 = async (path, destination) => {
   const s3 = buildS3();
   // await purgeCache(destination)
-  const promise = s3
-    .upload({
-      Bucket: process.env.CLOUD_FLARE_BUCKET,
-      Key: destination,
-      Body: fs.createReadStream(path),
-      ContentType: fileTypeFromFile(path),
-    })
-    .promise();
-
-  return promise;
+  return new Promise((resolve, reject) => {
+    https.get(path, async (res) => {
+      const data = await s3
+        .upload(
+          {
+            Bucket: process.env.CLOUD_FLARE_BUCKET,
+            Key: destination,
+            Body: res,
+            ContentType: fileTypeFromFile(path),
+          },
+          (err, data) => {
+            if (err) {
+              console.log(err);
+            }
+            console.log(data);
+          }
+        )
+        .promise();
+      resolve(data);
+    });
+  });
 };
