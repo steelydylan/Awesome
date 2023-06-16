@@ -14,6 +14,7 @@ import blogConfig from "@/blog.config";
 import { Wrapper } from "@/components/common/wrapper";
 import { Pager } from "@/components/pager";
 import { useArticles } from "@/hooks/use-articles";
+import { NotFound } from "@/components/common/not-found";
 
 type Props = {
   tag: Tag;
@@ -24,6 +25,10 @@ type Props = {
 
 const TagPage: NextPage<Props> = (props) => {
   const { tag, articles: defaultArticles, current, max } = props;
+  if (!defaultArticles || defaultArticles.length === 0) {
+    return <NotFound />;
+  }
+
   const { articles } = useArticles({
     defaultArticles,
     current,

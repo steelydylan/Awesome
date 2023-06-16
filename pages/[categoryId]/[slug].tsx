@@ -18,6 +18,7 @@ import { TagList } from "@/components/common/tag-list";
 import { getCategory } from "@/components/utils/get-category";
 import { getTagList } from "@/components/utils/get-tag-list";
 import { useArticle } from "@/hooks/use-article";
+import { NotFound } from "@/components/common/not-found";
 
 type DetailProps = {
   article: Article;
@@ -26,6 +27,10 @@ type DetailProps = {
 };
 
 export default ({ article: defaultArticle, related }: DetailProps) => {
+  if (!defaultArticle) {
+    return <NotFound />;
+  }
+
   const { article } = useArticle(defaultArticle.slug, defaultArticle);
   const jsonLd: ArticleJsonLdProps = {
     url: process.env.NEXT_PUBLIC_SITE_URL,

@@ -13,6 +13,7 @@ import { Article, Tag } from "@/types";
 import blogConfig from "@/blog.config";
 import { LinkButton } from "@/components/buttons";
 import { useArticles } from "@/hooks/use-articles";
+import { NotFound } from "@/components/common/not-found";
 
 type Props = {
   tag: Tag;
@@ -22,6 +23,11 @@ type Props = {
 
 const TagIndex: NextPage<Props> = (props) => {
   const { tag, articles: defaultArticles, max } = props;
+
+  if (!defaultArticles || defaultArticles.length === 0) {
+    return <NotFound />;
+  }
+
   const { articles } = useArticles({
     defaultArticles,
     current: 0,
