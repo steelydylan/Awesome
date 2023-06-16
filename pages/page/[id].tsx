@@ -78,7 +78,6 @@ export const getStaticProps = async ({ params }) => {
   const articles = await getArticles();
   const { id } = params;
   const current = parseInt(id, 10) - 1;
-  console.log(articles);
   return {
     revalidate: 60,
     props: {

@@ -94,47 +94,36 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId, id } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   const current = parseInt(id as string, 10) - 1;
-  try {
-    const articles = await getArticles();
-    const filteredPosts = articles
-      .filter(({ data }) => {
-        return data.category === categoryId;
-      })
-      .sort((articleA, articleB) => {
-        if (articleA.data.date > articleB.data.date) {
-          return -1;
-        }
-        return 1;
-      });
+  const articles = await getArticles();
+  const filteredPosts = articles
+    .filter(({ data }) => {
+      return data.category === categoryId;
+    })
+    .sort((articleA, articleB) => {
+      if (articleA.data.date > articleB.data.date) {
+        return -1;
+      }
+      return 1;
+    });
 
-    const slicedPosts = filteredPosts
-      .slice(
-        current * blogConfig.article.articlesPerPage,
-        current * blogConfig.article.articlesPerPage +
-          blogConfig.article.articlesPerPage
-      )
-      .map((p) => {
-        const { content, ...others } = p;
-        return others;
-      });
+  const slicedPosts = filteredPosts
+    .slice(
+      current * blogConfig.article.articlesPerPage,
+      current * blogConfig.article.articlesPerPage +
+        blogConfig.article.articlesPerPage
+    )
+    .map((p) => {
+      const { content, ...others } = p;
+      return others;
+    });
 
-    return {
-      revalidate: 60,
-      props: {
-        current: current + 1,
-        max: Math.ceil(
-          filteredPosts.length / blogConfig.article.articlesPerPage
-        ),
-        category,
-        articles: slicedPosts,
-      },
-    };
-  } catch (e) {
-    return {
-      revalidate: 60,
-      props: {
-        notFound: true,
-      },
-    };
-  }
+  return {
+    revalidate: 60,
+    props: {
+      current: current + 1,
+      max: Math.ceil(filteredPosts.length / blogConfig.article.articlesPerPage),
+      category,
+      articles: slicedPosts,
+    },
+  };
 };
